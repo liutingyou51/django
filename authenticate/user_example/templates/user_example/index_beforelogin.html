@@ -1,0 +1,311 @@
+<!doctype html>
+<html l lang="zh-TW">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600;700&display=swap" rel="stylesheet">
+    {%load static%}
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: 'Noto Serif TC', serif;
+        }
+
+        nav {
+            background-color: #77a88d;
+        }
+
+        a.logo {
+            width: 253px;
+            height: 79.4px;
+            background-image: url("{%static "user_example/wahoa.png"%}");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        a.logo:hover {
+            background-color: lightgray;
+            border-radius: 5px;
+        }
+
+        button.avatar {
+            background-image: url("{%static "user_example/head_visitor.png"%}");
+            background-repeat: no-repeat;
+            background-size: cover;
+            cursor: pointer;
+            display: inline;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Dropdown Content (Hidden by Default) */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            right: 0;
+        }
+
+        /* Links inside the dropdown */
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        /* Change color of dropdown links on hover */
+        .dropdown-content a:hover {
+            background-color: #f1f1f1
+        }
+
+        /* Show the dropdown menu on hover */
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+
+        #board {
+            background-color: #e0e0db;
+        }
+
+        #carouselbuttonsControls {
+            background-color: #e0e0db;
+        }
+
+        .carousel-control-prev-icon {
+            background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23222' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E");
+        }
+
+        .carousel-control-next-icon {
+            background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23222' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E");
+        }
+
+
+
+        button.board {
+            background-color: #e0e0db;
+            color: #7a7a6b;
+            font-weight: bolder;
+            border: #cececa solid 1px;
+            border-top: none;
+            border-bottom: none;
+        }
+
+        button.board:hover {
+            background-color: #acac98;
+            border: #acac98 solid 1px;
+            border-top: none;
+            border-bottom: none;
+        }
+
+        div.below {
+            padding-top: 10px;
+            background-color: #eee;
+            height: 80vh;
+        }
+
+        div.content {
+            display: inline-flex;
+            width: 100%;
+            padding: 1px;
+            border-radius: 5px;
+            background-color: white;
+        }
+
+        iframe.content {
+            align-self: center;
+            vertical-align: top;
+            border: white;
+            border-radius: 5px;
+            width: 100%;
+            background-color: white;
+        }
+
+        div a.pen {
+            position: absolute;
+            bottom: 2px;
+            right: 0;
+            background-color: #cececa;
+            border-radius: 10px;
+            padding: 3px;
+            margin: 5px;
+            width: max-content;
+            height: max-content;
+            box-shadow: 3px 4px #bbb;
+        }
+
+        div.pen a:hover {
+            background-color: #bbb;
+        }
+
+        iframe.post {
+            align-self: center;
+            vertical-align: top;
+            border-radius: 5px;
+            border: white;
+            background-color: white;
+            width: 100%;
+            height: 450px;
+        }
+
+        div.modal-body {
+            height: max-content;
+        }
+    </style>
+    <title>WA-HO-A(尚未登入)</title>
+</head>
+
+<body>
+    <div class="top sticky-top">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <a class="navbar-brand logo" href="{%url 'index_beforelogin' %}"></a>
+            <button class="navbar-toggler logo" type="button" data-toggle="collapse"
+                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="navbar-nav mr-auto search">
+                    <form class="form-inline my-2 my-lg-0">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+                    </form>
+                </div>
+                <div class="avatar" >
+                    <a class="avatar" href="http://127.0.0.1:8000/accounts/login/">
+                        <button class="avatar" type=button></button></a>
+                </div>
+            </div>
+        </nav>
+        <section id="board">
+            <div class="container">
+                <div class="row board d-flex">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-10">
+                        <div id="carouselbuttonsControls" class="carousel slide" data-interval="false"
+                            data-ride="carousel" data-pause="hover">
+                            <div class="element">
+                                <center>
+                                    <div class="carousel-inner">
+                                        <div class="carousel-item active">
+                                            <div class="btn-group" role="group" aria-label="Basic example">
+                                                <button type="button"
+                                                    class="btn dropbtn btn-secondary board b_00">癌症</button>
+                                                <button type="button" class="btn btn-secondary board b_01">家醫科</button>
+                                                <button type="button" class="btn btn-secondary board b_02">內科</button>
+                                                <button type="button" class="btn btn-secondary board b_03">外科</button>
+                                                <button type="button" class="btn btn-secondary board b_04">小兒科</button>
+                                                <button type="button" class="btn btn-secondary board b_05">婦產科</button>
+                                                <button type="button" class="btn btn-secondary board b_06">骨科</button>
+                                            </div>
+                                        </div>
+                                        <div class="carousel-item">
+                                            <div class="btn-group" role="group" aria-label="Basic example">
+                                                <button type="button" class="btn btn-secondary board b_07">神經外科</button>
+                                                <button type="button" class="btn btn-secondary board b_08">泌尿科</button>
+                                                <button type="button" class="btn btn-secondary board b_09">耳鼻喉科</button>
+                                                <button type="button" class="btn btn-secondary board b_10">眼科</button>
+                                                <button type="button" class="btn btn-secondary board b_11">皮膚科</button>
+                                                <button type="button" class="btn btn-secondary board b_12">神經科</button>
+                                                <button type="button" class="btn btn-secondary board b_13">精神科</button>
+                                            </div>
+                                        </div>
+                                        <div class="carousel-item">
+                                            <div class="btn-group" role="group" aria-label="Basic example">
+                                                <button type="button" class="btn btn-secondary board b_14">復健科</button>
+                                                <button type="button" class="btn btn-secondary board b_15">整型外科</button>
+                                                <button type="button"
+                                                    class="btn btn-secondary board b_22">急診醫學科</button>
+                                                <button type="button" class="btn btn-secondary board b_40">牙科</button>
+                                                <button type="button" class="btn btn-secondary board b_60">中醫科</button>
+                                                <button type="button" class="btn btn-secondary board b_2B">洗腎科</button>
+                                                <button type="button" class="btn btn-secondary board b_ot">其他科</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </center>
+                            </div>
+                            <div class="element">
+                                <a class="carousel-control-prev" href="#carouselbuttonsControls" role="button"
+                                    data-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                            </div>
+                            <div class="element">
+                                <a class="carousel-control-next" href="#carouselbuttonsControls" role="button"
+                                    data-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-1"></div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="below">
+        <section id="content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9 content">
+                        <iframe class="content" src="{%url 'content'%}"></iframe>
+                        <div class="pen sticky-bottom">
+                            <a href="#" class="pen" onclick="Remind()">
+                                <svg width="3em" height="3em" viewBox="0 0 16 16" class="bi bi-pencil-square"
+                                    fill="#7a7a6b" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                                    <path fill-rule="evenodd"
+                                        d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-3"></div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+    <script>
+        function Remind() {
+            alert('請先登入喔!');
+        }
+
+
+    </script>
+</body>
+
+</html>

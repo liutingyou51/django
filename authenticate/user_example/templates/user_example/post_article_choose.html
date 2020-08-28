@@ -1,0 +1,234 @@
+
+<!doctype html>
+<html lang="zh-TW">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600;700&display=swap" rel="stylesheet">
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            font-family: 'Noto Serif TC', serif;
+        }
+
+        body {
+            padding: 10px;
+        }
+
+        div.top {
+            box-sizing: border-box;
+            margin-bottom: 20px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #444;
+        }
+
+        a:hover {
+            text-decoration: none;
+            color: #444;
+        }
+
+        /* Include the padding and border in an element's total width and height */
+        div.chooseBoard {
+            box-sizing: border-box;
+            margin-bottom: 30px;
+        }
+
+        .scrollable-menu {
+            height: auto;
+            max-height: 240px;
+            overflow-x: hidden;
+        }
+
+
+
+        div.chooseTag {
+            width: 80vh;
+        }
+
+        /* Remove margins and padding from the list */
+        div.chooseTag ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Style the list items */
+        div.chooseTag ul li {
+            cursor: pointer;
+            position: relative;
+            padding: 12px 8px 12px 40px;
+            list-style-type: none;
+            background: #eee;
+            font-size: 18px;
+            transition: 0.2s;
+
+            /* make the list items unselectable */
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        /* Set all odd list items to a different color (zebra-stripes) */
+        div.chooseTag ul li:nth-child(odd) {
+            background: #f9f9f9;
+        }
+
+        /* Darker background-color on hover */
+        div.chooseTag ul li:hover {
+            background: #ddd;
+        }
+
+
+        /* Style the close button */
+        .close {
+            position: absolute;
+            right: 0;
+            top: 0;
+            padding: 12px 16px 12px 16px;
+        }
+
+        .close:hover {
+            background-color: #f44336;
+            color: white;
+        }
+
+        div.foot {
+            box-sizing: border-box;
+            margin-top: 20px;
+            margin-right: 10px;
+            text-align: right;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="top">
+        <a href="{%url 'post_article_write' %}"><button type="button" class="btn step btn-md btn-warning">上一步</button></a>
+    </div>
+    <div class="chooseBoard">
+        <div class="btn-group dropright">
+            <button type="button" class="btn btnchooseboard btn-md btn-dark dropdown-toggle" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                請選擇看板
+            </button>
+            <ul class="dropdown-menu scrollable-menu boards" role="menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">癌症</a>
+                <a class="dropdown-item" href="#">家醫科</a>
+                <a class="dropdown-item" href="#">內科</a>
+                <a class="dropdown-item" href="#">外科</a>
+                <a class="dropdown-item" href="#">小兒科</a>
+                <a class="dropdown-item" href="#">婦產科</a>
+                <a class="dropdown-item" href="#">骨科</a>
+                <a class="dropdown-item" href="#">神經外科</a>
+                <a class="dropdown-item" href="#">泌尿科</a>
+                <a class="dropdown-item" href="#">耳鼻喉科</a>
+                <a class="dropdown-item" href="#">眼科</a>
+                <a class="dropdown-item" href="#">皮膚科</a>
+                <a class="dropdown-item" href="#">神經科</a>
+                <a class="dropdown-item" href="#">精神科</a>
+                <a class="dropdown-item" href="#">復健科</a>
+                <a class="dropdown-item" href="#">整型外科</a>
+                <a class="dropdown-item" href="#">急診醫學科</a>
+                <a class="dropdown-item" href="#">牙科</a>
+                <a class="dropdown-item" href="#">中醫科</a>
+                <a class="dropdown-item" href="#">洗腎科</a>
+                <a class="dropdown-item" href="#">其他科</a>
+            </ul>
+        </div>
+    </div>
+    <div class="chooseTag">
+        <div id="addTAG" class="input-group mb-3">
+            <input type="text" id="myInput" class="form-control" placeholder="請輸入標籤 例如:疾病、症狀..." aria-label="請輸入標籤"
+                aria-describedby="button-addon2">
+            <div class="input-group-append">
+                <button onclick="newElement()" class="btn btn-dark addBtn" type="button" id="button-addon2">新增</button>
+            </div>
+        </div>
+        <ul id="myUL" class="tags">
+
+        </ul>
+    </div>
+    <div class="foot fixed-bottom">
+        <a href="#"><button type="button" class="btn step btn-md btn-warning">發文</button></a>
+    </div>
+
+    <script>
+        $(function () {
+
+            $(".dropdown-menu").on('click', 'a', function () {
+                $(".btnchooseboard:first-child").text($(this).text());
+                $(".btnchooseboard:first-child").val($(this).text());
+            });
+
+        });
+        // Create a "close" button and append it to each list item
+        var myNodelist = document.getElementsByTagName("LI");
+        var i;
+        for (i = 0; i < myNodelist.length; i++) {
+            var span = document.createElement("SPAN");
+            var txt = document.createTextNode("\u00D7");
+            span.className = "close";
+            span.appendChild(txt);
+            myNodelist[i].appendChild(span);
+        }
+
+        // Click on a close button to hide the current list item
+        var close = document.getElementsByClassName("close");
+        var i;
+        for (i = 0; i < close.length; i++) {
+            close[i].onclick = function () {
+                var div = this.parentElement;
+                div.style.display = "none";
+            }
+        }
+        // Create a new list item when clicking on the "Add" button
+        function newElement() {
+            var li = document.createElement("li");
+            var inputValue = document.getElementById("myInput").value;
+            var t = document.createTextNode(inputValue);
+            li.appendChild(t);
+            if (inputValue === '') {
+                alert("You must write something!");
+            } else {
+                document.getElementById("myUL").appendChild(li);
+            }
+            document.getElementById("myInput").value = "";
+
+            var span = document.createElement("SPAN");
+            var txt = document.createTextNode("\u00D7");
+            span.className = "close";
+            span.appendChild(txt);
+            li.appendChild(span);
+
+            for (i = 0; i < close.length; i++) {
+                close[i].onclick = function () {
+                    var div = this.parentElement;
+                    div.style.display = "none";
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

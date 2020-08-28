@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    
+    <title>login</title>
+    {%load static%}
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            list-style-type: none;
+
+        }
+
+        button {
+            background-color: #fafaf3;
+            color: black;
+            padding: 14px 20px;
+            margin: 15px 5px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+
+
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            font-family: Arial, Helvetica, sans-serif;
+            display: flex;
+
+        }
+
+        body {
+            width: 100%;
+            background-color: #77a88d;
+
+
+        }
+
+        div.logo {
+            padding: 50px 310px;
+
+        }
+
+        div.words {
+            padding: 250px 370px;
+
+        }
+
+        .logo {
+            width: 380px;
+            height: 119px;
+            float: left;
+
+        }
+
+        .words {
+            color: white;
+
+        }
+
+        .box {
+            vertical-align: middle;
+        }
+
+        .picture {
+            width: 983.4px;
+            height: 556.6px;
+            position: absolute;
+            bottom: 0px;
+            left: 0px;
+        }
+
+        .left {
+            width: 65%;
+
+        }
+
+        .right {
+            width: 35%;
+            height: 100%;
+            background-color: white;
+
+        }
+
+        div.avatar {
+
+            text-align: center;
+
+        }
+
+        .box {
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .form img {
+            width: 99px;
+            height: 132px;
+        }
+
+        .checkbox {
+            display: inline;
+
+
+        }
+
+        label {
+            margin: 5px;
+        }
+
+        label.checkbox {
+            display: inline-flex;
+        }
+
+        input {
+            background-color: #fafaf3;
+            padding: 5px;
+            margin: 5px;
+        }
+
+        input.check {
+            width: 20px;
+
+        }
+
+
+        a {
+            width: 75%;
+            text-align: right;
+            color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="left">
+        <div class="logo">
+            <img src="{%static "user_example/wahoa.png" %}" alt="logo" class="logo">
+        </div>
+        <div class="words">
+            <h5>致力於成為能夠整合醫療資訊的平台</h5>
+            <h5>並且讓大家想到醫療想到—挖厚阿。</h5>
+        </div>
+    </div>
+
+
+    <div class="picture">
+        <img src="{%static "user_example/hand.png" %}" alt="picture" class="picture">
+    </div>
+
+    <div class="right box">
+
+        <div class="login form">
+
+            <div class="avatar">
+                <img src="{%static "user_example/head_visitor.png" %}" alt="head">
+            </div>
+            <form action="{% url 'login' %}" method="post" >
+            {% csrf_token %}
+            
+            <div class="group">
+                <label for="uname"><b>帳號</b></label>
+                <input type="email" placeholder="a123456@gmail.com" name="username" required>
+
+                <label for="psw"><b>密碼</b></label>
+                <input type="password" placeholder="******" name="password" required>
+
+                <button type="submit" class='btn'>登入</button>
+                <label class="bottom">
+                    <a  class="bottom" href="{%url 'index_beforelogin'%}}"><button class="bottom" type=button></button>回首頁</a>
+                    <a  class='enter' href="{%url 'register' %}">註冊</a>
+                </label>
+            </div>
+            <input type="hidden" name="next" value="{{ next }}">
+            <script>
+                {% if form.errors %}
+                window.alert('There is something wrong with what you entered!');
+                {% endif %}
+
+                {% if next %}
+                window.alert('Hey, you can not access that page!');
+                {% endif %}
+            </script>
+            
+            </form>
+        </div>
+
+
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600;700&display=swap" rel="stylesheet">
+<title>Register</title>
+{%load static%}
+<style>
+    * {
+        box-sizing: border-box;
+        font-family: 'Noto Serif TC', serif;
+        font-size: 16px;
+    }
+
+    h2 {
+        font-size: 25px;
+    }
+
+    h3 {
+        font-size: 20px;
+    }
+
+    body {
+        background-color: #f1f1f1;
+    }
+
+    #regForm {
+        background-color: #ffffff;
+        margin: 20px auto;
+        padding: 20px;
+        width: 80%;
+        min-width: 300px;
+    }
+
+    div.logo1 {
+        width: 100%;
+    }
+
+    div.logo {
+        margin: auto;
+        width: 148px;
+        height: 148px;
+        border-radius: 50%;
+        border: solid 2px #a7a58c;
+        background-image: url("{%static "user_example/wahoa.png"%}");
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+    }
+
+    div.form-group {
+        margin-top: 12px;
+        margin-bottom: 8px;
+    }
+
+    div.form-row {
+        display: flex;
+        justify-content: space-between;
+    }
+
+
+    input {
+        padding: 5px;
+        width: 100%;
+        border: 1px solid #aaaaaa;
+    }
+
+    select {
+        padding: 4px;
+        width: 100%;
+        border: 1px solid #aaaaaa;
+    }
+
+    div.Nickname {
+        width: 43%;
+    }
+
+    div.Date {
+        width: 33%;
+    }
+
+    div.Gender {
+        width: 18%;
+    }
+
+    /* Mark input boxes that gets an error on validation: */
+    input.invalid {
+        background-color: #ffdddd;
+    }
+
+    /* Hide all steps by default: */
+    .tab {
+        display: none;
+        width: 65%;
+        margin: auto;
+    }
+
+
+    div.page {
+        margin-top: 40px;
+    }
+
+    button {
+        background-color: #77a88d;
+        color: #ffffff;
+        border: none;
+        padding: 10px 20px;
+        font-size: 17px;
+        font-family: Raleway;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    button:hover {
+        opacity: 0.8;
+    }
+
+    #prevBtn {
+        background-color: #bbbbbb;
+    }
+
+    /* Make circles that indicate the steps of the form: */
+    div.steps {
+        margin-bottom: 45px;
+    }
+
+    .step {
+        height: 4px;
+        width: 22%;
+        margin: 13px;
+        background-color: #bbbbbb;
+        border: none;
+        border-radius: 5px;
+        display: inline-block;
+        opacity: 0.5;
+    }
+
+    .step.active {
+        opacity: 1;
+    }
+
+    /* Mark the steps that are finished and valid: */
+    .step.finish {
+        background-color: #77a88d;
+    }
+
+    /* The message box is shown when the user clicks on the password field */
+    #message {
+        display: none;
+        background: #f1f1f1;
+        color: #000;
+        position: relative;
+        padding: 20px;
+        margin-top: 10px;
+    }
+
+    #message p {
+        padding: 10px 35px;
+        font-size: 18px;
+    }
+
+    /* Add a green text color and a checkmark when the requirements are right */
+    .valid {
+        color: green;
+    }
+
+    .valid:before {
+        position: relative;
+        left: -35px;
+        content: "✔";
+    }
+
+    /* Add a red text color and an "x" when the requirements are wrong */
+    .invalid {
+        color: red;
+    }
+
+    .invalid:before {
+        position: relative;
+        left: -35px;
+        content: "✖";
+    }
+</style>
+
+<body>
+
+    <form id="regForm" action="{%url 'register'%}" method="POST">
+      {% csrf_token %}
+        <section>
+            <div class="logo1">
+                <div class="logo"></div>
+            </div>
+        </section>
+        <!-- Circles which indicates the steps of the form: -->
+        <div style="text-align:center;margin-top:40px;" class="steps">
+            <span class="step"></span>
+            <span class="step"></span>
+            <span class="step"></span>
+        </div>
+        <!-- One "tab" for each step in the form: -->
+        <div class="tab">
+            <div class="form-group">
+                <label for="inputName">姓名Name</label>
+                <input type="text" class="form-control form-control-sm" id="inputName" placeholder="林彥亨" name="name">
+            </div>
+            <div class="form-group">
+                <label for="inputCellphone">手機Phone</label>
+                <input type="text" class="form-control form-control-sm" id="inputCellphone" placeholder="0987-654-321" name="phone">
+            </div>
+            <div class="form-row">
+                <div class="form-group Nickname">
+                    <label for="inputNickname">綽號Nickname</label>
+                    <input type="text" class="form-control form-control-sm" id="inputNickname" placeholder="林彥享" name="nickname">
+                </div>
+                <div class="form-group Date">
+                    <label for="inputDate">生日Birthday</label>
+                    <input type="text" class="form-control form-control-sm " id="inputDate" placeholder="1998/10/17">
+                </div>
+                <div class="form-group Gender">
+                    <label for="inputGender">性別Gender</label>
+                    <select id="inputGender" class="form-control form-control-sm" name="gender">
+                        <option selected>男male</option>
+                        <option>女female</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="tab">
+            <div class="form-group">
+                <label for="inputEmail4">帳號(信箱Email)</label>
+                <input type="email" class="form-control form-control-sm" id="inputEmail4" name="username">
+            </div>
+            <div class="form-group">
+                <label for="psw">密碼Password</label>
+                <input class="form-control form-control-sm" type="password" id="psw" name="psw"
+                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                    title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+                    required>
+            </div>
+            <div id="message">
+                <h3>密碼必須符合以下要求:</h3>
+                <p id="letter" class="invalid">至少一 <b>小寫</b>英文字母</p>
+                <p id="capital" class="invalid">至少一 <b>大寫</b> 英文字母</p>
+                <p id="number" class="invalid">至少一 <b>數字</b></p>
+                <p id="length" class="invalid">密碼至少 <b>8 位</b></p>
+            </div>
+        </div>
+        <div class="tab">
+            <h2>註冊完成!!</h2>
+            <h3>恭喜你完成註冊~回首頁體驗更多功能吧!</h3>
+        </div>
+        <div style="overflow:auto;" class="page">
+            <div style="float:right;">
+                <button type="button" id="prevBtn" onclick="nextPrev(-1)">上一步</button>
+                <button type="button" id="nextBtn" onclick="nextPrev(1)">下一步</button>
+            </div>
+        </div>
+    </form>
+
+    <script>
+        var currentTab = 0; // Current tab is set to be the first tab (0)
+        showTab(currentTab); // Display the current tab
+
+        function showTab(n) {
+            // This function will display the specified tab of the form...
+            var x = document.getElementsByClassName("tab");
+            x[n].style.display = "block";
+            //... and fix the Previous/Next buttons:
+            if (n == 0) {
+                document.getElementById("prevBtn").style.display = "none";
+            } else {
+                document.getElementById("prevBtn").style.display = "inline";
+            }
+            if (n == (x.length - 1)) {
+                document.getElementById("nextBtn").innerHTML = "完成!";
+            } else {
+                document.getElementById("nextBtn").innerHTML = "下一步";
+            }
+            //... and run a function that will display the correct step indicator:
+            fixStepIndicator(n)
+        }
+
+        function nextPrev(n) {
+            // This function will figure out which tab to display
+            var x = document.getElementsByClassName("tab");
+            // Exit the function if any field in the current tab is invalid:
+            if (n == 1 && !validateForm()) return false;
+            // Hide the current tab:
+            x[currentTab].style.display = "none";
+            // Increase or decrease the current tab by 1:
+            currentTab = currentTab + n;
+            // if you have reached the end of the form...
+            if (currentTab >= x.length) {
+                // ... the form gets submitted:
+                document.getElementById("regForm").submit();
+                return false;
+            }
+            // Otherwise, display the correct tab:
+            showTab(currentTab);
+        }
+
+        function validateForm() {
+            // This function deals with validation of the form fields
+            var x, y, i, valid = true;
+            x = document.getElementsByClassName("tab");
+            y = x[currentTab].getElementsByTagName("input");
+            // A loop that checks every input field in the current tab:
+            for (i = 0; i < y.length; i++) {
+                // If a field is empty...
+                if (y[i].value == "") {
+                    // add an "invalid" class to the field:
+                    y[i].className += " invalid";
+                    // and set the current valid status to false
+                    valid = false;
+                }
+            }
+            if (currentTab == 1) {
+                var myInput = document.getElementById("psw");
+                var lowerCaseLetters = /[a-z]/g;
+                var upperCaseLetters = /[A-Z]/g;
+                var numbers = /[0-9]/g;
+                if (!myInput.value.match(lowerCaseLetters) || !myInput.value.match(upperCaseLetters) || !myInput.value.match(numbers) || !myInput.value.length >= 8)
+                    valid = false
+            }
+            // If the valid status is true, mark the step as finished and valid:
+            if (valid) {
+                document.getElementsByClassName("step")[currentTab].className += " finish";
+            }
+            return valid; // return the valid status
+        }
+
+        function fixStepIndicator(n) {
+            // This function removes the "active" class of all steps...
+            var i, x = document.getElementsByClassName("step");
+            for (i = 0; i < x.length; i++) {
+                x[i].className = x[i].className.replace(" active", "");
+            }
+            //... and adds the "active" class on the current step:
+            x[n].className += " active";
+        }
+        var myInput = document.getElementById("psw");
+        var letter = document.getElementById("letter");
+        var capital = document.getElementById("capital");
+        var number = document.getElementById("number");
+        var length = document.getElementById("length");
+
+        // When the user clicks on the password field, show the message box
+        myInput.onfocus = function () {
+            document.getElementById("message").style.display = "block";
+        }
+
+
+        // When the user starts to type something inside the password field
+        myInput.onkeyup = function () {
+            // Validate lowercase letters
+            var lowerCaseLetters = /[a-z]/g;
+            if (myInput.value.match(lowerCaseLetters)) {
+                letter.classList.remove("invalid");
+                letter.classList.add("valid");
+            } else {
+                letter.classList.remove("valid");
+                letter.classList.add("invalid");
+            }
+
+            // Validate capital letters
+            var upperCaseLetters = /[A-Z]/g;
+            if (myInput.value.match(upperCaseLetters)) {
+                capital.classList.remove("invalid");
+                capital.classList.add("valid");
+            } else {
+                capital.classList.remove("valid");
+                capital.classList.add("invalid");
+            }
+
+            // Validate numbers
+            var numbers = /[0-9]/g;
+            if (myInput.value.match(numbers)) {
+                number.classList.remove("invalid");
+                number.classList.add("valid");
+            } else {
+                number.classList.remove("valid");
+                number.classList.add("invalid");
+            }
+
+            // Validate length
+            if (myInput.value.length >= 8) {
+                length.classList.remove("invalid");
+                length.classList.add("valid");
+            } else {
+                length.classList.remove("valid");
+                length.classList.add("invalid");
+            }
+        }
+    </script>
+
+</body>
+
+</html>
