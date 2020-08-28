@@ -9,7 +9,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    
+
     <title>login</title>
     {%load static%}
     <style>
@@ -61,7 +61,7 @@
         }
 
         div.words {
-            padding: 250px 370px;
+            padding: 250px 300px;
 
         }
 
@@ -119,18 +119,17 @@
             height: 132px;
         }
 
-        .checkbox {
-            display: inline;
-
+        label.bottom {
+            width: 100%;
+            color: black;
+            display: inline-flex;
+            justify-content: space-between;
+            align-items: center;
 
         }
 
         label {
             margin: 5px;
-        }
-
-        label.checkbox {
-            display: inline-flex;
         }
 
         input {
@@ -139,16 +138,8 @@
             margin: 5px;
         }
 
-        input.check {
-            width: 20px;
-
-        }
-
-
-        a {
-            width: 75%;
+        a.enter {
             text-align: right;
-            color: black;
         }
     </style>
 </head>
@@ -176,33 +167,33 @@
             <div class="avatar">
                 <img src="{%static "user_example/head_visitor.png" %}" alt="head">
             </div>
-            <form action="{% url 'login' %}" method="post" >
-            {% csrf_token %}
-            
-            <div class="group">
-                <label for="uname"><b>帳號</b></label>
-                <input type="email" placeholder="a123456@gmail.com" name="username" required>
+            <form action="{% url 'login' %}" method="post">
+                {% csrf_token %}
 
-                <label for="psw"><b>密碼</b></label>
-                <input type="password" placeholder="******" name="password" required>
+                <div class="group">
+                    <label for="uname"><b>帳號</b></label>
+                    <input type="email" placeholder="a123456@gmail.com" name="username" required>
 
-                <button type="submit" class='btn'>登入</button>
-                <label class="bottom">
-                    <a  class="bottom" href="{%url 'index_beforelogin'%}">回首頁</a>
-                    <a  class='enter' href="{%url 'register' %}">註冊</a>
-                </label>
-            </div>
-            <input type="hidden" name="next" value="{{ next }}">
-            <script>
-                {% if form.errors %}
-                window.alert('There is something wrong with what you entered!');
-                {% endif %}
+                    <label for="psw"><b>密碼</b></label>
+                    <input type="password" placeholder="******" name="password" required>
 
-                {% if next %}
-                window.alert('Hey, you can not access that page!');
-                {% endif %}
-            </script>
-            
+                    <button type="submit" >登入</button>
+                    <label class="bottom">
+                        <a class="bottom" href="{%url 'index_beforelogin'%}">回首頁</a>
+                        <a class='enter' href="{%url 'register' %}">註冊</a>
+                    </label>
+                </div>
+                <input type="hidden" name="next" value="{{ next }}">
+                <script>
+                    {% if form.errors %}
+                    window.alert('There is something wrong with what you entered!');
+                    {% endif %}
+
+                    {% if next %}
+                    window.alert('Hey, you can not access that page!');
+                    {% endif %}
+                </script>
+
             </form>
         </div>
 
