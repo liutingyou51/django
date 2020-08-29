@@ -4,3 +4,5 @@ authenticate/authenticate/__pycache__/
 authenticate/user_example/__pycache__/
 
 authenticate/user_example/migrations/__pycache__/
+
+authenticate/db.sqlite3
