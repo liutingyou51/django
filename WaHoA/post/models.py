@@ -1,0 +1,16 @@
+from django.db import models
+from django.utils import timezone
+
+
+# Create your models here.
+#verbose name 預設為變數名稱，可以用''改
+#post db
+class Post(models.Model):
+    title = models.CharField(max_length=100)
+    content = models.TextField(blank=False)
+    kind = models.CharField(max_length=100)
+    pub_date = models.DateTimeField('date published')#標題從pub_date->date published ,用了verbose name
+    def __str__(self):
+        return self.title
+
+    

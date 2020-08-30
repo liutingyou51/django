@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <style>
+        .box {
+            display: flex;
+            margin: 10px;
+        }
+
+        .box1 {
+            border: 2px solid black;
+            padding: 10px;
+            width: 200px;
+            margin: 10px;
+            text-align: center;
+        }
+
+        .icon img {
+
+            width: 72.5px;
+            height: 70px;
+
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        /* The Modal (background) */
+        .modal {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            /* Stay in place */
+            z-index: 1;
+            /* Sit on top */
+            padding-top: 100px;
+            /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%;
+            /* Full width */
+            height: 100%;
+            /* Full height */
+            overflow: auto;
+            /* Enable scroll if needed */
+            background-color: rgb(0, 0, 0);
+            /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.4);
+            /* Black w/ opacity */
+        }
+
+        /* Modal Content */
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+
+        /* The Close Button */
+        .close {
+            color: #aaaaaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    </div>
+    <div class="box">
+        <div class="box1">
+            <div class="title">
+                <h3>內科</h3>
+                <h4>5篇文章</h4>
+            </div>
+            <div class="icon">
+                <!-- Trigger/Open The Modal -->
+                <button id="myBtn"><img src="heart.png" alt="heart"></button>
+
+                <!-- The Modal -->
+                <div id="myModal" class="modal">
+
+                    <!-- Modal content -->
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <p>Some -1 text in the Modal..</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="box1">
+            <div class="title">
+                <h3>骨科</h3>
+                <h4>3篇文章</h4>
+            </div>
+            <div class="icon">
+                <!-- Trigger/Open The Modal -->
+                <button id="myBtn"><img src="bone.png" alt="heart"></button>
+
+                <!-- The Modal -->
+                <div id="myModal" class="modal">
+
+                    <!-- Modal content -->
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <p>Some 0 text in the Modal..</p>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="box1">
+            <div class="title">
+                <h3>小兒科</h3>
+                <h4>6篇文章</h4>
+            </div>
+            <div class="icon">
+                <!-- Trigger/Open The Modal -->
+                <button id="myBtn"><img src="baby.png" alt="heart"></button>
+
+                <!-- The Modal -->
+                <div id="myModal" class="modal">
+
+                    <!-- Modal content -->
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <p>Some 1 text in the Modal..</p>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="box1">
+            <div class="title">
+                <h3>腦科</h3>
+                <h4>2篇文章</h4>
+            </div>
+            <div class="icon">
+                <!-- Trigger/Open The Modal -->
+                <button id="#myBtn"> <img src="brain.png" alt="heart"></button>
+
+                <!-- The Modal -->
+                <div id="myModal" class="modal">
+
+                    <!-- Modal content -->
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <p>Some 2 text in the Modal..</p>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="box1">
+            <div class="title">
+                <h3>婦產科</h3>
+                <h4>6篇文章</h4>
+            </div>
+            <div class="icon">
+                <!-- Trigger/Open The Modal -->
+                <button id="myBtn"> <img src="mom.png" alt="heart"></button>
+
+                <!-- The Modal -->
+                <div id="myModal" class="modal">
+
+                    <!-- Modal content -->
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <p>Some 3 text in the Modal..</p>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+    <script>
+        // Get the modal
+        var index;
+        $("button").click(function () {
+
+
+            index = $("button").index(this);
+            var str = $("h4").eq(index).text();
+            var num = str.match(/\d+/);
+            $(".modal").eq(index).css("display", "block");
+
+            var i;
+            for (i = 0; i < parseInt(num[0]); i++) {
+                var bt = $("<button></button>");
+                bt.text("ddd");
+                $(".modal-content").eq(index).append(bt);
+            }
+
+        });
+
+        // Get the button that opens the modal
+
+
+        // Get the <span> element that closes the modal
+
+        // When the user clicks the button, open the modal 
+
+
+        // When the user clicks on <span> (x), close the modal
+        $(".close").click(function () {
+            $(".modal-content").eq(index).children("button").remove();
+            $(".modal").eq(index).css("display", "none");
+
+        });
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target == $(".modal").eq(index)) {
+                $(".modal").eq(index).css("display", "none");
+            }
+        }
+
+    </script>
+</body>
+
+</html>
