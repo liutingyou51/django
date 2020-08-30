@@ -53,5 +53,5 @@ def post_article_choose(request):
 @xframe_options_sameorigin
 def post_article_write(request):
     return render(request,'user_example/post_article_write.html')
-
+def registerValidate:
 
