@@ -10,3 +10,5 @@ authenticate/db.sqlite3
 *.pyc
 
 authenticate-2/db.sqlite3
+
+*.sqlite3

@@ -189,6 +189,7 @@
 <body>
 
     <form id="regForm", action="{%url 'register'%}" method="POST"}>
+        {%csrf_token%}
         <section>
             <div class="logo1">
                 <div class="logo"></div>
@@ -204,16 +205,16 @@
         <div class="tab">
             <div class="form-group">
                 <label for="inputName">姓名Name</label>
-                <input type="text" class="form-control form-control-sm" id="inputName" placeholder="林彥亨">
+                <input type="text" class="form-control form-control-sm" id="inputName" placeholder="林彥亨" name="name">
             </div>
             <div class="form-group">
                 <label for="inputCellphone">手機Phone</label>
-                <input type="text" class="form-control form-control-sm" id="inputCellphone" placeholder="0987-654-321">
+                <input type="text" class="form-control form-control-sm" id="inputCellphone" placeholder="0987-654-321" name="phone">
             </div>
             <div class="form-row">
                 <div class="form-group Nickname">
                     <label for="inputNickname">綽號Nickname</label>
-                    <input type="text" class="form-control form-control-sm" id="inputNickname" placeholder="林彥享">
+                    <input type="text" class="form-control form-control-sm" id="inputNickname" placeholder="林彥享" name="nickname">
                 </div>
                 <div class="form-group Date">
                     <label for="datetimepicker">生日Birthday</label>
@@ -222,7 +223,7 @@
                 </div>
                 <div class="form-group Gender">
                     <label for="inputGender">性別Gender</label>
-                    <select id="inputGender" class="form-control form-control-sm">
+                    <select id="inputGender" class="form-control form-control-sm" name="gender">
                         <option selected>男male</option>
                         <option>女female</option>
                     </select>
@@ -232,7 +233,7 @@
         <div class="tab">
             <div class="form-group">
                 <label for="inputEmail4">帳號(信箱Email)</label>
-                <input type="email" class="form-control form-control-sm" id="inputEmail4">
+                <input type="email" class="form-control form-control-sm" id="inputEmail4" name="username">
             </div>
             <div class="form-group">
                 <label for="psw">密碼Password</label>
