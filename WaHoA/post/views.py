@@ -15,15 +15,4 @@ def get_post(request):
 def get_favorite(request):
     return render(request, 'user/myfavorite/myfavorite.html') #我的收藏
 
-@xframe_options_sameorigin
-def content(request):
-    return render(request,"content.html") #首頁的文章列表
 
-@xframe_options_sameorigin
-def post_article_choose(request):
-    return render(request,'post_article_choose.html')
-
-@xframe_options_sameorigin
-def post_article_write(request):
-    return render(request,'post_article_write.html')
-#去setting.py改template內容

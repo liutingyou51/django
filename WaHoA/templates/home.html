@@ -191,7 +191,7 @@
                     <div class="dropdown-content">
                         <a class="dropdown-item" href="{%url 'post:myfavorite' %}">我的收藏</a>
                         <a class="dropdown-item" href="{%url 'post:myarticles' %}">我的文章</a>
-                        <a class="dropdown-item" href="{%url 'beforelogin' %}">登出</a>
+                        <a class="dropdown-item" href="{%url 'reg:beforelogin' %}">登出</a>
                     </div>
                 </div>
             </div>
@@ -270,7 +270,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-9 content">
-                        <iframe class="content" src="templates/content.html"></iframe>
+                        <iframe class="content" src="{%url 'reg:content' %}"></iframe>
                         <div class="pen sticky-bottom">
                             <a href="#" class="pen" data-toggle="modal" data-target="#postarticleWrite">
                                 <svg width="3em" height="3em" viewBox="0 0 16 16" class="bi bi-pencil-square"
@@ -301,7 +301,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <iframe class="post step1" src="templates/post_article_write.html"></iframe>
+                    <iframe class="post step1" src="{% url 'reg:post_article_write' %}"></iframe>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-dark" data-dismiss="modal">取消</button>

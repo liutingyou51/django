@@ -21,6 +21,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls', )),
     path('user/', include('post.urls')),#假設已登入
-    path('', views.home_beforelogin, name='beforelogin'),#首頁放home_beforelogin
+    path('', include('reg.urls')), #未登入與iframe
     path('register/',views.register, name = 'register'), #註冊葉面
 ]
