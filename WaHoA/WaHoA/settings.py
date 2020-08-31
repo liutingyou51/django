@@ -138,6 +138,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-LOGIN_REDIRECT_URL='/home'
+LOGIN_REDIRECT_URL='/user'
 
 AUTH_USER_MODEL='reg.NewUser'
