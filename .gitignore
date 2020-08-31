@@ -8,3 +8,5 @@ authenticate/user_example/migrations/__pycache__/
 authenticate/db.sqlite3
 
 *.pyc
+
+authenticate-2/db.sqlite3
