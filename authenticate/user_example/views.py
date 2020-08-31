@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate,login
 from django.contrib.auth.models import User
 from django.views.decorators.clickjacking import xframe_options_sameorigin
 from .models import NewUser
+from django.http import HttpResponse
 
 def index_beforelogin(request):
     #e=request.POST["username"]
@@ -38,10 +39,8 @@ def register(request):
     
 def myarticle_addtime(request):
     return render(request,'article/myarticle_addtime.html')
-
 def myarticle_collect(request):
     return render(request,'article/myarticle_collect.html')
-
 @xframe_options_sameorigin
 def content(request):
     return render(request,"user_example/content.html")
@@ -54,4 +53,10 @@ def post_article_choose(request):
 def post_article_write(request):
     return render(request,'user_example/post_article_write.html')
 
-
+def registerValidate(request):
+    try:
+        NewUser.objects.get(username=request.POST['username'])
+    except:
+        return HttpResponse("ok username")
+    else:
+        return HttpResponse("not ok username")

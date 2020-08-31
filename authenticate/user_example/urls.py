@@ -10,4 +10,5 @@ urlpatterns = [
     path('post_article_choose',views.post_article_choose,name='post_article_choose'),
     path('post_article_write',views.post_article_write,name='post_article_write'),
     path('myarticle_collect',views.myarticle_collect,name="myarticle_collect"),
+    path('register/Validate',views.registerValidate,name="register_validate"),
 ]
