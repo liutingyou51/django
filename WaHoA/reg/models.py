@@ -6,3 +6,4 @@ class NewUser(AbstractUser):
     phone = models.CharField(max_length=100,default=' ')
     name = models.CharField(max_length=100,default=' ')
     gender = models.CharField(max_length=100,default=' ')
+    birth = models.DateTimeField('birthday', null=True)

@@ -38,6 +38,7 @@ STATICFILES_DIRS = [
 INSTALLED_APPS = [
     'post',
     'user',
+    'datetimepicker',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

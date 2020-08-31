@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate,login
 from django.contrib.auth.models import User
 from django.views.decorators.clickjacking import xframe_options_sameorigin
 from .models import NewUser
+#from .forms import DateForm
 
 def home_beforelogin(request):
     return render(request, 'home_beforelogin.html',)
@@ -29,3 +30,8 @@ def register(request):
         form=UserCreationForm()
     context={'form':form}
     return render(request,'registration/register.html',context)
+
+#class DateView():
+ #   template_name = "registration/register.html"
+  #  form_class = DateForm
+

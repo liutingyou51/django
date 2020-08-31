@@ -1,189 +1,194 @@
 <!DOCTYPE html>
 <html>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600;700&display=swap" rel="stylesheet">
-<title>Register</title>
-<style>
-    * {
-        box-sizing: border-box;
-        font-family: 'Noto Serif TC', serif;
-        font-size: 16px;
-    }
 
-    h2 {
-        font-size: 25px;
-    }
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600;700&display=swap" rel="stylesheet">
+    {% load static %}
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Noto Serif TC', serif;
+            font-size: 16px;
+        }
 
-    h3 {
-        font-size: 20px;
-    }
+        h2 {
+            font-size: 25px;
+        }
 
-    body {
-        background-color: #f1f1f1;
-    }
+        h3 {
+            font-size: 20px;
+        }
 
-    #regForm {
-        background-color: #ffffff;
-        margin: 20px auto;
-        padding: 20px;
-        width: 80%;
-        min-width: 300px;
-    }
+        body {
+            background-color: #e0e0db;
+        }
 
-    div.logo1 {
-        width: 100%;
-    }
-    div.logo {
-        margin: auto;
-        width: 148px;
-        height: 148px;
-        border-radius: 50%;
-        border: solid 2px #a7a58c;
-        background-image: url("/static/wahoa.png");
-        background-repeat: no-repeat;
-        background-size: contain;
-        background-position: center;
-    }
+        #regForm {
+            background-color: #ffffff;
+            margin: 20px auto;
+            padding: 20px;
+            width: 80%;
+            min-width: 300px;
+        }
 
-    div.form-group {
-        margin-top: 12px;
-        margin-bottom: 8px;
-    }
+        div.logo1 {
+            width: 100%;
+        }
 
-    div.form-row {
-        display: flex;
-        justify-content: space-between;
-    }
+        div.logo {
+            margin: auto;
+            width: 148px;
+            height: 148px;
+            border-radius: 50%;
+            border: solid 2px #77a88d;
+            background-image: url("/static/wahoa.png");
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
+            background-color: #77a88d;
+        }
 
+        div.form-group {
+            margin-top: 12px;
+            margin-bottom: 8px;
+        }
 
-    input {
-        padding: 5px;
-        width: 100%;
-        border: 1px solid #aaaaaa;
-    }
-
-    select {
-        padding: 4px;
-        width: 100%;
-        border: 1px solid #aaaaaa;
-    }
-
-    div.Nickname {
-        width: 43%;
-    }
-
-    div.Date {
-        width: 33%;
-    }
-
-    div.Gender {
-        width: 18%;
-    }
-
-    /* Mark input boxes that gets an error on validation: */
-    input.invalid {
-        background-color: #ffdddd;
-    }
-
-    /* Hide all steps by default: */
-    .tab {
-        display: none;
-        width: 65%;
-        margin: auto;
-    }
+        div.form-row {
+            display: flex;
+            justify-content: space-between;
+        }
 
 
-    div.page {
-        margin-top: 40px;
-    }
+        input {
+            padding: 5px;
+            width: 100%;
+            border: 1px solid #aaaaaa;
+        }
 
-    button {
-        background-color: #77a88d;
-        color: #ffffff;
-        border: none;
-        padding: 10px 20px;
-        font-size: 17px;
-        font-family: Raleway;
-        cursor: pointer;
-        border-radius: 5px;
-    }
+        select {
+            padding: 4px;
+            width: 100%;
+            border: 1px solid #aaaaaa;
+        }
 
-    button:hover {
-        opacity: 0.8;
-    }
+        div.Nickname {
+            width: 43%;
+        }
 
-    #prevBtn {
-        background-color: #bbbbbb;
-    }
+        div.Date {
+            width: 33%;
+        }
 
-    /* Make circles that indicate the steps of the form: */
-    div.steps {
-        margin-bottom: 45px;
-    }
+        div.Gender {
+            width: 18%;
+        }
 
-    .step {
-        height: 4px;
-        width: 22%;
-        margin: 13px;
-        background-color: #bbbbbb;
-        border: none;
-        border-radius: 5px;
-        display: inline-block;
-        opacity: 0.5;
-    }
+        /* Mark input boxes that gets an error on validation: */
+        input.invalid {
+            background-color: #ffdddd;
+        }
 
-    .step.active {
-        opacity: 1;
-    }
+        /* Hide all steps by default: */
+        .tab {
+            display: none;
+            width: 65%;
+            margin: auto;
+        }
 
-    /* Mark the steps that are finished and valid: */
-    .step.finish {
-        background-color: #77a88d;
-    }
 
-    /* The message box is shown when the user clicks on the password field */
-    #message {
-        display: none;
-        background: #f1f1f1;
-        color: #000;
-        position: relative;
-        padding: 20px;
-        margin-top: 10px;
-    }
+        div.page {
+            margin-top: 40px;
+        }
 
-    #message p {
-        padding: 10px 35px;
-        font-size: 18px;
-    }
+        button {
+            background-color: #77a88d;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 17px;
+            font-family: Raleway;
+            cursor: pointer;
+            border-radius: 5px;
+        }
 
-    /* Add a green text color and a checkmark when the requirements are right */
-    .valid {
-        color: green;
-    }
+        button:hover {
+            opacity: 0.8;
+        }
 
-    .valid:before {
-        position: relative;
-        left: -35px;
-        content: "✔";
-    }
+        #prevBtn {
+            background-color: #bbbbbb;
+        }
 
-    /* Add a red text color and an "x" when the requirements are wrong */
-    .invalid {
-        color: red;
-    }
+        /* Make circles that indicate the steps of the form: */
+        div.steps {
+            margin-bottom: 45px;
+        }
 
-    .invalid:before {
-        position: relative;
-        left: -35px;
-        content: "✖";
-    }
-</style>
+        .step {
+            height: 4px;
+            width: 22%;
+            margin: 13px;
+            background-color: #bbbbbb;
+            border: none;
+            border-radius: 5px;
+            display: inline-block;
+            opacity: 0.3;
+        }
+
+        .step.active {
+            opacity: 0.8;
+        }
+
+        /* Mark the steps that are finished and valid: */
+        .step.finish {
+            background-color: #a7a58c;
+            opacity: 0.8;
+        }
+
+        /* The message box is shown when the user clicks on the password field */
+        #message {
+            display: none;
+            background: #f1f1f1;
+            color: #000;
+            position: relative;
+            padding: 20px;
+            margin-top: 10px;
+        }
+
+        #message p {
+            padding: 10px 35px;
+            font-size: 18px;
+        }
+
+        /* Add a green text color and a checkmark when the requirements are right */
+        .valid {
+            color: green;
+        }
+
+        .valid:before {
+            position: relative;
+            left: -35px;
+            content: "✔";
+        }
+
+        /* Add a red text color and an "x" when the requirements are wrong */
+        .invalid {
+            color: red;
+        }
+
+        .invalid:before {
+            position: relative;
+            left: -35px;
+            content: "✖";
+        }
+    </style>
+</head>
 
 <body>
 
-    <form id="regForm" action="{%url 'register'%}" method="POST">
-      {% csrf_token %}
+    <form id="regForm", action="{%url 'register'%}" method="POST"}>
         <section>
             <div class="logo1">
                 <div class="logo"></div>
@@ -199,24 +204,25 @@
         <div class="tab">
             <div class="form-group">
                 <label for="inputName">姓名Name</label>
-                <input type="text" class="form-control form-control-sm" id="inputName" placeholder="林彥亨" name="name">
+                <input type="text" class="form-control form-control-sm" id="inputName" placeholder="林彥亨">
             </div>
             <div class="form-group">
                 <label for="inputCellphone">手機Phone</label>
-                <input type="text" class="form-control form-control-sm" id="inputCellphone" placeholder="0987-654-321" name="phone">
+                <input type="text" class="form-control form-control-sm" id="inputCellphone" placeholder="0987-654-321">
             </div>
             <div class="form-row">
                 <div class="form-group Nickname">
                     <label for="inputNickname">綽號Nickname</label>
-                    <input type="text" class="form-control form-control-sm" id="inputNickname" placeholder="林彥享" name="nickname">
+                    <input type="text" class="form-control form-control-sm" id="inputNickname" placeholder="林彥享">
                 </div>
                 <div class="form-group Date">
-                    <label for="inputDate">生日Birthday</label>
-                    <input type="text" class="form-control form-control-sm " id="inputDate" placeholder="1998/10/17">
+                    <label for="datetimepicker">生日Birthday</label>
+                    <input id="datetimepicker" type="text" > 
+                    
                 </div>
                 <div class="form-group Gender">
                     <label for="inputGender">性別Gender</label>
-                    <select id="inputGender" class="form-control form-control-sm" name="gender">
+                    <select id="inputGender" class="form-control form-control-sm">
                         <option selected>男male</option>
                         <option>女female</option>
                     </select>
@@ -226,7 +232,7 @@
         <div class="tab">
             <div class="form-group">
                 <label for="inputEmail4">帳號(信箱Email)</label>
-                <input type="email" class="form-control form-control-sm" id="inputEmail4" name="username">
+                <input type="email" class="form-control form-control-sm" id="inputEmail4">
             </div>
             <div class="form-group">
                 <label for="psw">密碼Password</label>
@@ -317,7 +323,7 @@
                 var lowerCaseLetters = /[a-z]/g;
                 var upperCaseLetters = /[A-Z]/g;
                 var numbers = /[0-9]/g;
-                if (!myInput.value.match(lowerCaseLetters) || !myInput.value.match(upperCaseLetters) || !myInput.value.match(numbers) || !myInput.value.length >= 8)
+                if (!myInput.value.match(lowerCaseLetters) || !myInput.value.match(upperCaseLetters) || !myInput.value.match(numbers) || myInput.value.length < 8)
                     valid = false
             }
             // If the valid status is true, mark the step as finished and valid:
@@ -389,8 +395,16 @@
                 length.classList.add("invalid");
             }
         }
+        
     </script>
 
 </body>
+<!-- this should go after your </body> -->
+<link rel="stylesheet" type="text/css" href= "/static/datetimepicker/jquery.datetimepicker.css">
+<script src="/static/datetimepicker/jquery.js"></script>
+<script src="/static/datetimepicker/build/jquery.datetimepicker.full.min.js"></script>
+<script>
+    jQuery('#datetimepicker').datetimepicker({format: 'DD/MM/YYYY HH:mm'});
+</script>
 
 </html>
