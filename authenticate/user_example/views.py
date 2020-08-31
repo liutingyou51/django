@@ -57,6 +57,6 @@ def registerValidate(request):
     try:
         NewUser.objects.get(username=request.POST['username'])
     except:
-        return HttpResponse("FUCK YOU")
+        return HttpResponse("ok username")
     else:
-        return HttpResponse("HIHI")
+        return HttpResponse("not ok username")

@@ -296,12 +296,43 @@
         function nextPrev(n) {
             // This function will figure out which tab to display
             var x = document.getElementsByClassName("tab");
+            var valid= true;
             // Exit the function if any field in the current tab is invalid:
             if (n == 1 && !validateForm()) return false;
+            /*
+                當頁面是1時才要判斷 username 是否已經被使用過了，透過 ajax 傳送資料到後端 ，然後 async 要設成 false 避免 post 還沒得到後端傳回來的資料就接著做，如果是重複的帳號 data 會回傳 not ok user 
+                這時我們就要將 valid 設成  false
+            */
+            if (currentTab == 1) {
+                $.ajax({
+                    type: 'POST',
+                    url: '{%url 'register_validate'%}',
+                    data: {
+
+                        csrfmiddlewaretoken: $('[name="csrfmiddlewaretoken"]').val(),    // 添加这句，去获取 input 的值
+                        "username": $("#inputEmail4").val(),
+
+                    },
+                    success: function (data, status) {
+                        if (data == "not ok username") {
+                            alert("帳號已經被註冊過\n");
+                            $("#inputEmail4").val("");
+                            
+                            valid=false;
+                        }
+                    },
+                    async: false
+
+                });
+
+            }
+            if(valid==false)
+                return false;
             // Hide the current tab:
             x[currentTab].style.display = "none";
             // Increase or decrease the current tab by 1:
             currentTab = currentTab + n;
+
             // if you have reached the end of the form...
             if (currentTab >= x.length) {
                 // ... the form gets submitted:
@@ -309,21 +340,9 @@
                 return false;
             }
             // Otherwise, display the correct tab:
+
             showTab(currentTab);
-            $.post('{%url 'register_validate'%}',
-                {
-                    
-                    csrfmiddlewaretoken: $('[name="csrfmiddlewaretoken"]').val(),    // 添加这句，去获取 input 的值
-                    "username":$("#inputName").val(),
-                
-                },
-                function (data, status) {
-                    alert("Data: " + data + "\nStatus: " + status);
-                    alert("Data: " + data + "\nStatus: " + status);
-                },
 
-
-            );
         }
 
         function validateForm() {
@@ -347,7 +366,7 @@
                 var upperCaseLetters = /[A-Z]/g;
                 var numbers = /[0-9]/g;
                 if (!myInput.value.match(lowerCaseLetters) || !myInput.value.match(upperCaseLetters) || !myInput.value.match(numbers) || !myInput.value.length >= 8)
-                    valid = false
+                    valid = false;
             }
             // If the valid status is true, mark the step as finished and valid:
             if (valid) {
