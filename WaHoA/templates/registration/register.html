@@ -218,7 +218,7 @@
                 </div>
                 <div class="form-group Date">
                     <label for="datetimepicker">生日Birthday</label>
-                    <input id="datetimepicker" type="text" > 
+                    <input id="datetimepicker" type="text" name="birth"> 
                     
                 </div>
                 <div class="form-group Gender">
@@ -405,7 +405,8 @@
 <script src="/static/datetimepicker/jquery.js"></script>
 <script src="/static/datetimepicker/build/jquery.datetimepicker.full.min.js"></script>
 <script>
-    jQuery('#datetimepicker').datetimepicker({format: 'DD/MM/YYYY HH:mm'});
+    
+    jQuery('#datetimepicker').datetimepicker({format: 'Y-m-d H:i:s'});
 </script>
 
 </html>

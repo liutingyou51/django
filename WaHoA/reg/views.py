@@ -17,7 +17,7 @@ def register(request):
         phone = request.POST['phone']
         name = request.POST['name']
         gender = request.POST['gender']
-        birth = request.Post['birth']
+        birth = request.POST['birth']
         NewUser.objects.create_user(username=username,
         password=password, email=None, nickname=nickname,
         phone=phone, name=name, gender=gender, birth = birth)
