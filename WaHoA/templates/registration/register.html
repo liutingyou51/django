@@ -309,7 +309,7 @@
             if (currentTab == 1) { 
                 $.ajax({ 
                     type: 'POST', 
-                    url: '{%url 'register_validate'%}', 
+                    url: '{%url 'reg:register_validate'%}', 
                     data: { 
  
                         csrfmiddlewaretoken: $('[name="csrfmiddlewaretoken"]').val(),    // 添加这句，去获取 input 的值 
