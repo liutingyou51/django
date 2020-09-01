@@ -6,7 +6,7 @@ from django.views.decorators.clickjacking import xframe_options_sameorigin
 
 
 def home(request):   #已登入的首頁
-    NewUser.objects(gender)
+    gender =request.user.gender
     if gender=='男male':
         return render(request, 'home.html',{"headpicture":"/static/head_boy.jpg"}) 
     else:
