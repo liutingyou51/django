@@ -237,7 +237,7 @@
 <body>
     <div class="top fixed-top">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand logo" href="#"></a>
+            <a class="navbar-brand logo" href="/user/"></a>
             <button class="navbar-toggler logo" type="button" data-toggle="collapse"
                 data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -356,7 +356,7 @@
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header">S
+                <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLongTitle">
                         撰寫你的貼文吧!
                     </h5>
@@ -365,7 +365,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <iframe class="post step1" src="{%url 'reg:post_article_write' %}"></iframe>
+                    <iframe class="post step1" src="{% url 'reg:post_article_write' %}"></iframe>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-dark" data-dismiss="modal">取消</button>
