@@ -9,6 +9,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    {%load static%}
     <style>
         .box {
             display: flex;
@@ -96,7 +97,7 @@
             </div>
             <div class="icon">
                 <!-- Trigger/Open The Modal -->
-                <button id="myBtn"><img src="heart.png" alt="heart"></button>
+                <button id="myBtn"><img src="{%static 'kind/Cardiology.jpg' %}" alt="heart"></button>
 
                 <!-- The Modal -->
                 <div id="myModal" class="modal">
@@ -117,7 +118,7 @@
             </div>
             <div class="icon">
                 <!-- Trigger/Open The Modal -->
-                <button id="myBtn"><img src="bone.png" alt="heart"></button>
+                <button id="myBtn"><img src="{%static 'kind/Orthopedics.jpg' %}" alt="heart"></button>
 
                 <!-- The Modal -->
                 <div id="myModal" class="modal">
@@ -139,7 +140,7 @@
             </div>
             <div class="icon">
                 <!-- Trigger/Open The Modal -->
-                <button id="myBtn"><img src="baby.png" alt="heart"></button>
+                <button id="myBtn"><img src="{%static 'kind/Pediatrics.jpg' %}" alt="heart"></button>
 
                 <!-- The Modal -->
                 <div id="myModal" class="modal">
@@ -161,7 +162,7 @@
             </div>
             <div class="icon">
                 <!-- Trigger/Open The Modal -->
-                <button id="#myBtn"> <img src="brain.png" alt="heart"></button>
+                <button id="#myBtn"> <img src="{%static 'kind/neurologist.jpg' %}" alt="heart"></button>
 
                 <!-- The Modal -->
                 <div id="myModal" class="modal">
@@ -183,7 +184,7 @@
             </div>
             <div class="icon">
                 <!-- Trigger/Open The Modal -->
-                <button id="myBtn"> <img src="mom.png" alt="heart"></button>
+                <button id="myBtn"> <img src="{%static 'kind/Obstetrics_and_Gynecology.jpg' %}" alt="heart"></button>
 
                 <!-- The Modal -->
                 <div id="myModal" class="modal">
