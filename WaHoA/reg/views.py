@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate,login
 from django.contrib.auth.models import User
 from django.views.decorators.clickjacking import xframe_options_sameorigin
 from .models import NewUser
+from django.http import HttpResponse
 #from .forms import DateForm
 
 def home_beforelogin(request):
@@ -46,4 +47,10 @@ def post_article_choose(request):
 def post_article_write(request):
     return render(request,'post_article_write.html')
 
-
+def registerValidate(request):
+    try:
+        NewUser.objects.get(username=request.POST['username'])
+    except:
+        return HttpResponse("彥享說FUCK YOU")
+    else:
+        return HttpResponse("Success")
