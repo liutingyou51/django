@@ -158,7 +158,7 @@
 
 
     <div class="picture">
-        <img src="{%static "login/hand.png" %}" alt="picture" class="picture">
+        <img src="{%static 'login/hand.png' %}" alt="picture" class="picture">
     </div>
 
     <div class="right box">
@@ -166,7 +166,7 @@
         <div class="login form">
 
             <div class="avatar">
-                <img src="{%static "login/head_visitor.png" %}" alt="head">
+                <img src="{%static 'login/head_visitor.png' %}" alt="head">
             </div>
             <form action="{% url 'login' %}" method="post">
                 {% csrf_token %}

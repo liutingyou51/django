@@ -34,7 +34,6 @@
         }
         
         button.avatar {
-            background-image: url("{%static "head_visitor.png"%}");
             background-repeat: no-repeat;
             background-size: cover;
             cursor: pointer;
@@ -187,7 +186,7 @@
                     </form>
                 </div>
                 <div class="avatar dropdown">
-                    <button class="avatar"></button>
+                    <button class="avatar" style="background-image: url('{%static "head_girl.jpg" %}');"></button>
                     <div class="dropdown-content">
                         <a class="dropdown-item" href="{%url 'post:myfavorite' %}">我的收藏</a>
                         <a class="dropdown-item" href="{%url 'post:myarticles' %}">我的文章</a>

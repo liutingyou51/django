@@ -254,9 +254,9 @@
                 <div class="avatar dropdown">
                     <button class="avatar"></button>
                     <div class="dropdown-content">
-                        <a class="dropdown-item" href="#">我的收藏</a>
-                        <a class="dropdown-item" href="#">我的文章</a>
-                        <a class="dropdown-item" href="#">登出</a>
+                        <a class="dropdown-item" href="{%url 'post:myfavorite'%}">我的收藏</a>
+                        <a class="dropdown-item" href="{%url 'post:myarticles'%}">我的文章</a>
+                        <a class="dropdown-item" href="{%url 'reg:beforelogin'%}">登出</a>
                     </div>
                 </div>
             </div>
