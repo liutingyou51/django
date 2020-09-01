@@ -14,5 +14,9 @@ def get_post(request):
 
 def get_favorite(request):
     return render(request, 'user/myfavorite/myfavorite.html') #我的收藏
+    
+@xframe_options_sameorigin
+def add_comment_2(request):
+    return render(request,'user/myarticle/add_comment_2.html')
 
 

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>留言</title>
+    {%load static%}
+    <style>
+        /* Include the padding and border in an element's total width and height */
+        * {
+            box-sizing: border-box;
+            font-family: 'Noto Serif TC', serif;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        /* Remove margins and padding from the list */
+        ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Style the list items */
+        ul li {
+            cursor: pointer;
+            position: relative;
+            padding: 12px 8px 12px 0px;
+            list-style-type: none;
+            background: #eee;
+            font-size: 16px;
+            transition: 0.2s;
+            /* make the list items unselectable */
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        /* Set all odd list items to a different color (zebra-stripes) */
+        ul li:nth-child(odd) {
+            background: #f9f9f9;
+        }
+
+        /* Darker background-color on hover */
+        ul li:hover {
+            background: #ddd;
+        }
+
+
+
+
+        /* Style the header */
+        .header {
+            background-color: #eee;
+            padding: 15px 30px;
+            color: white;
+            text-align: center;
+        }
+
+        /* Clear floats after the header */
+        .header:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        /* Style the input */
+        input {
+            margin: 0;
+            border: none;
+            border-radius: 0;
+            width: 80%;
+            padding: 10px;
+            float: left;
+            font-size: 16px;
+        }
+
+        /* Style the "Add" button */
+        .addBtn {
+            padding: 10px;
+            width: 20%;
+            background: #d9d9d9;
+            color: #555;
+            float: left;
+            text-align: center;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+            border-radius: 0;
+        }
+
+        .addBtn:hover {
+            background-color: #bbb;
+        }
+
+        img {
+            margin-right: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <ul id="myUL" class="tags"></ul>
+        <div id="myDIV" class="header">
+            <input type="text" id="myInput" placeholder="請輸入留言">
+            <span onclick="newElement()" class="addBtn">發佈</span>
+        </div>
+    </div>
+
+    <script>
+
+        // Create a new list item when clicking on the "Add" button
+        function newElement() {
+            var div = document.createElement("div");
+            var div2 = document.createElement("div");
+            var span = document.createElement("SPAN");
+            var img = document.createElement('img');
+            var headd = document.createElement('h5')
+            var para = document.createElement('p')
+            var textt = document.createTextNode('_匿名 2020xxxx')
+            var b = document.createTextNode('Bx')
+
+            div.class = "media";
+            div2.class = "media-body"
+            var inputValue = document.getElementById("myInput").value;
+            // var para = document.createElement("P");
+            var t = document.createTextNode(inputValue);
+
+            if (inputValue === '') {
+                alert("不能發佈空留言喔!");
+            } else {
+                document.getElementById("myUL").appendChild(div);
+            }
+            document.getElementById("myInput").value = "";
+
+
+            div.style.display = 'flex';
+            img.style.height = '73.3px';
+            img.style.width = '55px';
+            img.style.alignSelf = 'start';
+            img.src = "{% static 'head_girl.jpg' %}";
+            div.style.marginBottom = "25px";
+            headd.style.fontSize = '18px';
+            headd.style.color = 'dimgray';
+            span.style.fontSize = '15px';
+            span.style.color = '#aaa';
+            // spantext.setAttribute("position", "absolute");
+            // spantext.setAttribute(" display", "inline-block")
+            // spantext.setAttribute("top", "-100px");
+
+
+            div.appendChild(img);
+            div.appendChild(div2);
+
+            div2.appendChild(headd);
+            div2.appendChild(para);
+
+            headd.appendChild(b);
+            headd.appendChild(span);
+            para.appendChild(t);
+
+            span.appendChild(textt);
+            // para.appendChild(t);
+
+            for (i = 0; i < close.length; i++) {
+                close[i].onclick = function () {
+                    var div = this.parentElement;
+                    div.style.display = "none";
+                }
+            }
+        }
+    </script>
+
+</body>
+
+</html>
