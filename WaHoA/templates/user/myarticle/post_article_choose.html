@@ -33,11 +33,6 @@
             padding: 10px;
         }
 
-        div.top {
-            box-sizing: border-box;
-            margin-bottom: 20px;
-        }
-
         a {
             text-decoration: none;
             color: #444;
@@ -123,9 +118,6 @@
 </head>
 
 <body>
-    <div class="top">
-        <a href="{%url 'post_article_write' %}"><button type="button" class="btn step btn-md btn-warning">上一步</button></a>
-    </div>
     <div class="chooseBoard">
         <div class="btn-group dropright">
             <button type="button" class="btn btnchooseboard btn-md btn-dark dropdown-toggle" data-toggle="dropdown"
@@ -170,8 +162,16 @@
         </ul>
     </div>
     <div class="foot fixed-bottom">
+        <a href="#"><button type="button" class="btn step btn-md btn-warning">上一步</button></a>
         <a href="#"><button type="button" class="btn step btn-md btn-warning">發文</button></a>
     </div>
+    <script>
+        function funback() {
+            window.history.back()
+            //self.history.back();
+            //javascript:parent.document.getElementById('b_frame').contentWindow.history.back();  
+        }
+    </script>
 
     <script>
         $(function () {

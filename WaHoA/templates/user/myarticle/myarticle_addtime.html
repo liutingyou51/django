@@ -36,11 +36,10 @@
         }
 
         .wrap {
-            margin: auto;
             height: 90vh;
             width: max-content;
             padding-top: 20vh;
-            padding-left: 10vh;
+            padding-left: 20px;
         }
 
         .wrap:hover {
@@ -113,6 +112,10 @@
             top: -10%;
         }
 
+        nav {
+            background-color: #77a88d;
+        }
+
            /*時間軸上的頭貼，放科別照片*/
         button.atc {
             width: 75px;
@@ -128,8 +131,8 @@
         }
 
         a.logo {
-            width: 105.2px;
-            height: 55.5px;
+            width: 253px;
+            height: 79.4px;
             background-image: url("{%static "login/wahoa.png"%}");
             background-repeat: no-repeat;
             background-size: cover;
@@ -184,9 +187,20 @@
         .dropdown:hover .dropdown-content {
             display: block;
         }
+        iframe.comment {
+            vertical-align: top;
+            border: none;
+            background-color: white;
+            width: 100%;
+        }
 
         div.footer {
             padding: 5vh;
+            width: 100%;
+        }
+        div.board {
+            position: absolute;
+            right: 10px;
         }
 
         .scrollable-menu {
@@ -208,8 +222,27 @@
         div.modal-body {
             height: max-content;
         }
+        .badge {
+            font-size: 16px;
+            margin-right: 5px;
+        }
+
+        div.comments {
+            margin-top: 15px;
+        }
+
+        .media {
+            margin-bottom: 25px;
+        }
+    </style>
+    <style id="addtime">
     </style>
     <script>
+        function ResetPost() {
+            var url = "{% url 'reg:post_article_write' %}";
+            var el = document.getElementById('postiframe');
+            el.src = url;
+        }
         $(function () {
             $('[data-toggle="popover"]').popover()
         })
@@ -227,16 +260,42 @@
         $('#myModal').on('shown.bs.modal', function () {
             $('#myInput').trigger('focus')
         })
-        
-        
+        var css = document.getElementById('addtime');
+        var c = css.sheet;
+        var d = document.getElementById('atcid');
 
+        c.insertRule("#atcid#atcid::before{content:'發文時間';}", 0);
+        c.insertRule("#atcid#atcid::before{color:black;}", 0);
+        c.insertRule("#atcid#atcid::before{text-align:center;}", 0);
 
+    </script>
+    <script>
+        var clicked = false, clickX;
+        $(document).on({
+            'mousemove': function (e) {
+                clicked && updateScrollPos(e);
+            },
+            'mousedown': function (e) {
+                e.preventDefault();
+                clicked = true;
+                clickX = e.pageX;
+            },
+            'mouseup': function () {
+                clicked = false;
+                $('html').css('cursor', 'auto');
+            }
+        });
+
+        var updateScrollPos = function (e) {
+            $('html').css('cursor', 'grabbing');
+            $(window).scrollLeft($(window).scrollLeft() + (clickX - e.pageX));
+        }
     </script>
 </head>
 
 <body>
     <div class="top fixed-top">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg navbar-light">
             <a class="navbar-brand logo" href="/user/"></a>
             <button class="navbar-toggler logo" type="button" data-toggle="collapse"
                 data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -248,7 +307,7 @@
                 <div class="navbar-nav mr-auto">
                     <form class="form-inline my-2 my-lg-0">
                         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                        <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
                     </form>
                 </div>
                 <div class="avatar dropdown">
@@ -300,12 +359,12 @@
     <div class="footer fixed-bottom">
         <button type="button" class="btn btn-dark btn-lg pen" data-toggle="modal"
             data-target="#postarticleWrite">發文</button>
-        <div class="btn-group dropup">
-            <button type="button" class="btn btn-success btn-lg board dropdown-toggle" data-toggle="dropdown"
+        <div class="btn-group dropup board">
+            <button type="button" class="btn btn-outline-dark btn-lg board dropdown-toggle" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
                 選擇科別
             </button>
-            <ul class="dropdown-menu scrollable-menu boards" role="menu" aria-labelledby="dropdownMenuButton">
+            <ul class="dropdown-menu dropdown-menu-right scrollable-menu boards" role="menu" aria-labelledby="dropdownMenuButton">
                 <a class="dropdown-item" href="#">癌症</a>
                 <a class="dropdown-item" href="#">家醫科</a>
                 <a class="dropdown-item" href="#">內科</a>
@@ -332,18 +391,41 @@
 
     </div>
     
-    <div class="modal fade" id="exampleModalLong2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+    <div class="modal fade" id="exampleModalLong1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">文章標題</h5>
+                    <h5 class="modal-title" id="exampleModalLongTitle">文章標題<br><sub>|科別</sub></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    內文...
+                    <div>
+                        內文...
+                        <hr><a href="#" class="badge badge-success">標籤</a><a href="#"
+                            class="badge badge-info">標籤</a><a href="#" class="badge badge-dark">標籤</a>
+                    </div>
+                    <div class="comments">
+                        <div class="media">
+                            <img src="頭貼範例.png" class="align-self-start mr-3" style="width:55px">
+                            <div class="media-body">
+                                <h5 style="color: dimgray;">B1<span style="font-size: 15px;color: #aaa;">_匿名 2020xxxx
+                                    </span></h5>
+                                <p>留言內文</p>
+                            </div>
+                        </div>
+                        <div class="media">
+                            <img src="頭貼範例.png" class="align-self-start mr-3" style="width:55px">
+                            <div class="media-body">
+                                <h5 style="color: dimgray;">B2<span style="font-size: 15px;color: #aaa;">_匿名 2020xxxx
+                                    </span></h5>
+                                <p>留言內文</p>
+                            </div>
+                        </div>
+                        <iframe src="add_comment_2.html" class="comment"></iframe>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary">編輯</button>
@@ -365,18 +447,14 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <iframe class="post step1" src="{% url 'reg:post_article_write' %}"></iframe>
+                    <iframe id="postiframe" class="post step1" src="{% url 'reg:post_article_write' %}"></iframe>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-dark" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-dark" onclick="ResetPost()">捨棄貼文</button>
                 </div>
             </div>
         </div>
     </div>
-    <script>
-
-
-    </script>
 </body>
 
 </html>
