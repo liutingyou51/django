@@ -5,8 +5,12 @@ from django.views.decorators.clickjacking import xframe_options_sameorigin
 #進入myartickl.html
 
 
-def home(request):
-    return render(request, 'home.html') #已登入的首頁
+def home(request):   #已登入的首頁
+    NewUser.objects(gender)
+    if gender=='男male':
+        return render(request, 'home.html',{"headpicture":"/static/head_boy.jpg"}) 
+    else:
+        return render(request, 'home.html',{"headpicture":"/static/head_girl.jpg"}) 
 
 def get_post(request):
     number = Post.objects.all()
