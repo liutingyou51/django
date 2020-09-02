@@ -118,16 +118,17 @@
 </head>
 
 <body>
-    <form action="{% url 'post:create' %}" method="POST">
+    <form action="{% url 'post:create'%}" method="POST" enctype = "multipart/form-data">
     {% csrf_token %}
         <div class="chooseBoard">
             <div class="btn-group dropright">
-                <button type="button" class="btn btnchooseboard btn-md btn-dark dropdown-toggle" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false" name = "kind">
-                    請選擇看板
+                <button type="button"  class="btn btnchooseboard btn-md btn-dark dropdown-toggle" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    請選擇看板                  
                 </button>
-                <ul class="dropdown-menu scrollable-menu boards" role="menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#">癌症</a>
+                <ul class="dropdown-menu scrollable-menu boards" role="menu" aria-labelledby="dropdownMenuButton"
+                   >
+                    <a class="dropdown-item" href="#" >癌症</a>
                     <a class="dropdown-item" href="#">家醫科</a>
                     <a class="dropdown-item" href="#">內科</a>
                     <a class="dropdown-item" href="#">外科</a>
@@ -167,6 +168,7 @@
             <a href="#" onclick="funback()"><button type="button" class="btn step btn-md btn-warning">上一步</button></a>
             <a href="#" onclick="Redirect()"><button type="submit" class="btn step btn-md btn-warning">發文</button></a>
         </div>
+    </form>
     <script>
         function funback() {
             window.history.back()
@@ -174,11 +176,12 @@
             //javascript:parent.document.getElementById('b_frame').contentWindow.history.back();  
         }
     </script>
-    </form>
+    
     <script>
         function Redirect() {
         //發文按鈕按下去後導回「我的文章」頁面
             window.top.location.replace("http://127.0.0.1:8000/user/myarticles/");
+        
     }      
     </script>
 
@@ -187,7 +190,6 @@
 
             $(".dropdown-menu").on('click', 'a', function () {
                 $(".btnchooseboard:first-child").text($(this).text());
-                $(".btnchooseboard:first-child").val($(this).text());
             });
 
         });

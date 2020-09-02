@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from .models import Post, Comment
 from django.views.decorators.clickjacking import xframe_options_sameorigin
 from django.utils import timezone
+from django.http import HttpResponse
 # Create your views here.
 #進入myartickl.html
 
@@ -50,15 +51,7 @@ def post_article_write(request):
 
 @xframe_options_sameorigin
 def create_post(request):
-    print(request.method)
-    if request.method == 'POST':
-        kind = request.POST['kind']
-        print(Post.objects.latest('pub_date'))
-        Post.objects.latest('pub_date').update(kind=kind)
-        print("successful updated")
-    else:
-        print("fail!")
-    return render(request, 'test.html')
+    return HttpResponse('test.html')
 
 @xframe_options_sameorigin
 def add_comment_2(request):
