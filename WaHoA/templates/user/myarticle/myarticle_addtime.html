@@ -317,77 +317,14 @@
     </div>
     <div class="wrap">
         <ul class="timeline">
-            <li id="atcid" data-toggle="popover" data-trigger="hover" title="林彥享的燙傷處理秘訣#2"
+        {% for item in number %}
+            <li id="atcid" data-toggle="popover" data-trigger="hover" title="{{item.title}}2"
                 data-content="今天來跟大家分享個我是如何處理燙傷後續換藥的，如果想看燙傷當下的故事的可以到#1去看看...">
-                <button class="atc" data-toggle="modal" data-target="#exampleModalLong1">
+                <button id="button{{forloop.counter}}" class="atc" data-title={{item.title}} data-content={{item.content}} data-toggle="modal" data-target="#exampleModalLong{{forloop.counter}}">
                     <a id="divisionid" href="#" class="atc"></a>
                 </button>
             </li>
-            <li data-toggle="popover" data-trigger="hover" title="文章標題" data-content="文章擷取">
-                <button class="atc" data-toggle="modal" data-target="#exampleModalLong2">
-                    <a href="#" class="atc"></a>
-                </button>
-            </li>
-            <li>
-                <button class="atc">
-                    <a href="#" class="atc"></a>
-                </button>
-            </li>
-            <li>
-                <button class="atc">
-                    <a href="#" class="atc"></a>
-                </button>
-            </li>
-            <li>
-                <button class="atc">
-                    <a href="#" class="atc"></a>
-                </button>
-            </li>
-            <li>
-                <button class="atc">
-                    <a href="#" class="atc"></a>
-                </button>
-            </li>
-            <li>
-                <button class="atc">
-                    <a href="#" class="atc"></a>
-                </button>
-            </li>
-            <li>
-                <button class="atc">
-                    <a href="#" class="atc"></a>
-                </button>
-            </li>
-            <li>
-                <button class="atc">
-                    <a href="#" class="atc"></a>
-                </button>
-            </li>
-            <li>
-                <button class="atc">
-                    <a href="#" class="atc"></a>
-                </button>
-            </li>
-            <li>
-                <button class="atc">
-                    <a href="#" class="atc"></a>
-                </button>
-            </li>
-            <li>
-                <button class="atc">
-                    <a href="#" class="atc"></a>
-                </button>
-            </li>
-            <li>
-                <button class="atc">
-                    <a href="#" class="atc"></a>
-                </button>
-            </li>
-            <li>
-                <button class="atc">
-                    <a href="#" class="atc"></a>
-                </button>
-            </li>
+        {% endfor %}      
         </ul>
     </div>
     <div class="footer fixed-bottom">
@@ -395,19 +332,20 @@
             data-target="#postarticleWrite">發文</button>
 
     </div>
-    <div class="modal fade" id="exampleModalLong1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+    {% for item in number %}
+    <div class="modal fade" id="exampleModalLong{{forloop.counter}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">林彥享的燙傷處理秘訣#2 <br><sub>|皮膚科</sub></h5>
+                    <h5 class="modal-title" id="exampleModalLongTitle">{{item.title}} <br><sub>|皮膚科</sub></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     <div>
-                        今天來跟大家分享個我是如何處理燙傷後續換藥的，如果想看燙傷當下的故事的可以到#1去看看(￣∇￣)(以下畫面可能引起不適請斟酌點開) 
+                        {{item.content}}
                         
                         <hr><a href="#" class="badge badge-success">燙傷</a><a href="#"
                             class="badge badge-info">後續處理</a><a href="#" class="badge badge-dark">我是全能小畫家</a>
@@ -447,6 +385,7 @@
             </div>
         </div>
     </div>
+    {%endfor%}
     <div class="modal fade" id="exampleModalLong2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
