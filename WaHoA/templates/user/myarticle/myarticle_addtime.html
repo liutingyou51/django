@@ -37,11 +37,10 @@
         }
 
         .wrap {
-            margin: auto;
             height: 90vh;
             width: max-content;
             padding-top: 20vh;
-            padding-left: 10vh;
+            padding-left: 20px;
         }
 
         .wrap:hover {
@@ -118,7 +117,7 @@
         nav {
             background-color: #77a88d;
         }
-
+        /*時間軸上的頭貼，放科別照片*/
         button.atc {
             width: 75px;
             height: 75px;
@@ -199,8 +198,12 @@
 
         div.footer {
             padding: 5vh;
+            width: 100%;
         }
-
+        div.board { 
+            position: absolute; 
+            right: 10px; 
+        } 
         .scrollable-menu {
             height: auto;
             max-height: 240px;
@@ -318,8 +321,8 @@
     <div class="wrap">
         <ul class="timeline">
         {% for item in number %}
-            <li id="atcid" data-toggle="popover" data-trigger="hover" title="{{item.title}}2"
-                data-content="今天來跟大家分享個我是如何處理燙傷後續換藥的，如果想看燙傷當下的故事的可以到#1去看看...">
+            <li id="atcid" data-toggle="popover" data-trigger="hover" title="{{item.title}}"
+                data-content="{{item.content}}">
                 <button id="button{{forloop.counter}}" class="atc" data-title={{item.title}} data-content={{item.content}} data-toggle="modal" data-target="#exampleModalLong{{forloop.counter}}">
                     <a id="divisionid" href="#" class="atc"></a>
                 </button>
@@ -333,65 +336,64 @@
 
     </div>
     {% for item in number %}
-    <div class="modal fade" id="exampleModalLong{{forloop.counter}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">{{item.title}} <br><sub>|皮膚科</sub></h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div>
-                        {{item.content}}
-                        
-                        <hr><a href="#" class="badge badge-success">燙傷</a><a href="#"
-                            class="badge badge-info">後續處理</a><a href="#" class="badge badge-dark">我是全能小畫家</a>
+        <div class="modal fade" id="exampleModalLong{{forloop.counter}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">{{item.title}} <br><sub>kind:    {{item.kind}}</sub></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
-                    <div class="comments">
-                        <div class="media">
-                            <img src="{%static 'head_boy.jpg'%}" class="align-self-start mr-3" style="width:55px">
-                            <div class="media-body">
-                                <h5 style="color: dimgray;">B1<span style="font-size: 15px;color: #aaa;">_匿名 20200807
-                                    </span></h5>
-                                <p>感謝大神!!小弟的傷疤真的越來越淡了(感動</p>
+                    <div class="modal-body">
+                        <div>
+                            {{item.content}}
+                            <hr><a href="#" class="badge badge-success">燙傷</a><a href="#"
+                                class="badge badge-info">後續處理</a><a href="#" class="badge badge-dark">我是全能小畫家</a>
+                        </div>
+                        <div class="comments">
+                            <div class="media">
+                                <img src="{%static 'head_boy.jpg'%}" class="align-self-start mr-3" style="width:55px">
+                                <div class="media-body">
+                                    <h5 style="color: dimgray;">B1<span style="font-size: 15px;color: #aaa;">_匿名 20200807
+                                        </span></h5>
+                                    <p>感謝大神!!小弟的傷疤真的越來越淡了(感動</p>
+                                </div>
+                            </div>
+                            <div class="media">
+                                <img src="{%static 'head_boy.jpg'%}" class="align-self-start mr-3" style="width:55px">
+                                <div class="media-body">
+                                    <h5 style="color: dimgray;">B2<span style="font-size: 15px;color: #aaa;">_匿名 20200807
+                                        </span></h5>
+                                    <p>這個標籤是甚麼鬼哈哈XDD</p>
+                                </div>
+                            </div>
+                            <div class="media">
+                                <img src="{% static 'head_girl.jpg' %}" class="align-self-start mr-3" style="width:55px">
+                                <div class="media-body">
+                                    <h5 style="color: dimgray;">B3<span style="font-size: 15px;color: #aaa;">_匿名 20200807
+                                        </span></h5>
+                                    <p>也很推薦oiiyu的藥膏，冰冰涼涼的不黏膩，而且擦了半個月疤痕幾乎就消失了!重點是適合月底的窮學生qq就是我本人</p>
+                                </div>
                             </div>
                         </div>
-                        <div class="media">
-                            <img src="{%static 'head_boy.jpg'%}" class="align-self-start mr-3" style="width:55px">
-                            <div class="media-body">
-                                <h5 style="color: dimgray;">B2<span style="font-size: 15px;color: #aaa;">_匿名 20200807
-                                    </span></h5>
-                                <p>這個標籤是甚麼鬼哈哈XDD</p>
-                            </div>
-                        </div>
-                        <div class="media">
-                            <img src="{% static 'head_girl.jpg' %}" class="align-self-start mr-3" style="width:55px">
-                            <div class="media-body">
-                                <h5 style="color: dimgray;">B3<span style="font-size: 15px;color: #aaa;">_匿名 20200807
-                                    </span></h5>
-                                <p>也很推薦oiiyu的藥膏，冰冰涼涼的不黏膩，而且擦了半個月疤痕幾乎就消失了!重點是適合月底的窮學生qq就是我本人</p>
-                            </div>
-                        </div>
+                        <iframe src="{%url 'post:add_comment_2' %}" class="comment"></iframe>
                     </div>
-                    <iframe src="{%url 'post:add_comment_2' %}" class="comment"></iframe>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">編輯</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary">編輯</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
     {%endfor%}
     <div class="modal fade" id="exampleModalLong2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">文章標題 <br><sub>|科別</sub></h5>
+                    <h5 class="modal-title" id="exampleModalLongTitle">文章標題 <br><sub>科別</sub></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -442,7 +444,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <iframe class="post step1" src="{% url 'reg:post_article_write' %}"></iframe>
+                    <iframe class="post step1" src="{% url 'post:post_article_write' %}"></iframe>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-dark" data-dismiss="modal">取消</button>
