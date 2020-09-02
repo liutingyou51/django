@@ -1,5 +1,6 @@
+
 <!doctype html>
-<html lang="en">
+<html lang="zh-TW">
 
 <head>
     <!-- Required meta tags -->
@@ -9,18 +10,146 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600;700&display=swap" rel="stylesheet">
+    <title>我的收藏</title>
     {%load static%}
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            font-family: 'Noto Serif TC', serif;
+        }
+
+        body {
+            background-color: #e0e0db;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .wrap {
+            margin: auto;
+            height: 90vh;
+            width: max-content;
+            padding-top: 20vh;
+            padding-left: 10vh;
+        }
+
+        .wrap:hover {
+            cursor: move;
+        }
+
+
+        nav {
+            background-color: #77a88d;
+        }
+
+        button.atc {
+            width: 75px;
+            height: 75px;
+            border-radius: 50%;
+            background-image: url("頭貼範例.png");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        button.atc:hover {
+            background-image: url("頭貼範例.jpg");
+        }
+
+        a.logo {
+            width: 253px;
+            height: 79.4px;
+            background-image: url("{%static 'wahoa.png'%}");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        a.logo:hover {
+            background-color: lightgray;
+            border-radius: 5px;
+        }
+
+        button.avatar {
+            background-image: url("{{headpicture}}");
+            background-repeat: no-repeat;
+            background-size: cover;
+            cursor: pointer;
+            display: inline;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Dropdown Content (Hidden by Default) */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            right: 0;
+        }
+
+        /* Links inside the dropdown */
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        /* Change color of dropdown links on hover */
+        .dropdown-content a:hover {
+            background-color: #f1f1f1
+        }
+
+        /* Show the dropdown menu on hover */
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        iframe.comment {
+            vertical-align: top;
+            border: none;
+            background-color: white;
+            width: 100%;
+        }
+
+        div.footer {
+            padding: 5vh;
+        }
+
         .box {
             display: flex;
-            margin: 10px;
+            justify-content: center;
+            vertical-align: middle;
+            margin: 60px;
+
         }
 
         .box1 {
             border: 2px solid black;
             padding: 10px;
             width: 200px;
-            margin: 10px;
+            margin: 15px;
+
             text-align: center;
         }
 
@@ -29,10 +158,6 @@
             width: 72.5px;
             height: 70px;
 
-        }
-
-        body {
-            font-family: Arial, Helvetica, sans-serif;
         }
 
         /* The Modal (background) */
@@ -83,143 +208,161 @@
             cursor: pointer;
         }
     </style>
+    <style id="addtime">
+    </style>
+
 
 </head>
 
 <body>
+    <div class="top fixed-top">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <a class="navbar-brand logo" href="/user/"></a>
+            <button class="navbar-toggler logo" type="button" data-toggle="collapse"
+                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="navbar-nav mr-auto">
+                    <form class="form-inline my-2 my-lg-0">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+                    </form>
+                </div>
+                <div class="avatar dropdown">
+                    <button class="avatar"></button>
+                    <div class="dropdown-content">
+                        <a class="dropdown-item" href="{%url 'post:myfavorite'%}">我的收藏</a>
+                        <a class="dropdown-item" href="{%url 'post:myarticles'%}">我的文章</a>
+                        <a class="dropdown-item" href="{%url 'reg:beforelogin'%}">登出</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <div class="box">
+            <div class="box1">
+                <div class="title">
+                    <h3>內科</h3>
+                    <h4>5篇文章</h4>
+                </div>
+                <div class="icon">
+                    <!-- Trigger/Open The Modal -->
+                    <button id="myBtn"><img src="{%static 'kind/Cardiology.jpg' %}" alt="heart"></button>
+
+                    <!-- The Modal -->
+                    <div id="myModal" class="modal">
+
+                        <!-- Modal content -->
+                        <div class="modal-content">
+                            <span class="close">&times;</span>
+                            <p>內科收藏文章</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="box1">
+                <div class="title">
+                    <h3>骨科</h3>
+                    <h4>3篇文章</h4>
+                </div>
+                <div class="icon">
+                    <!-- Trigger/Open The Modal -->
+                    <button id="myBtn"><img src="{%static 'kind/Orthopedics.jpg' %}" alt="heart"></button>
+
+                    <!-- The Modal -->
+                    <div id="myModal" class="modal">
+
+                        <!-- Modal content -->
+                        <div class="modal-content">
+                            <span class="close">&times;</span>
+                            <p>骨科收藏文章</p>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="box1">
+                <div class="title">
+                    <h3>小兒科</h3>
+                    <h4>6篇文章</h4>
+                </div>
+                <div class="icon">
+                    <!-- Trigger/Open The Modal -->
+                    <button id="myBtn"><img src="{%static 'kind/Pediatrics.jpg' %}" alt="heart"></button>
+
+                    <!-- The Modal -->
+                    <div id="myModal" class="modal">
+
+                        <!-- Modal content -->
+                        <div class="modal-content">
+                            <span class="close">&times;</span>
+                            <p>小兒科收藏文章</p>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="box1">
+                <div class="title">
+                    <h3>腦科</h3>
+                    <h4>2篇文章</h4>
+                </div>
+                <div class="icon">
+                    <!-- Trigger/Open The Modal -->
+                    <button id="myBtn"> <img src="{%static 'kind/neurologist.jpg' %}" alt="heart"></button>
+
+                    <!-- The Modal -->
+                    <div id="myModal" class="modal">
+
+                        <!-- Modal content -->
+                        <div class="modal-content">
+                            <span class="close">&times;</span>
+                            <p>腦科收藏文章</p>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="box1">
+                <div class="title">
+                    <h3>婦產科</h3>
+                    <h4>6篇文章</h4>
+                </div>
+                <div class="icon">
+                    <!-- Trigger/Open The Modal -->
+                    <button id="myBtn"> <img src="{%static 'kind/Obstetrics_and_Gynecology.jpg' %}" alt="heart"></button>
+
+                    <!-- The Modal -->
+                    <div id="myModal" class="modal">
+
+                        <!-- Modal content -->
+                        <div class="modal-content">
+                            <span class="close">&times;</span>
+                            <p>婦產科收藏文章</p>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
     </div>
-    <div class="box">
-        <div class="box1">
-            <div class="title">
-                <h3>內科</h3>
-                <h4>5篇文章</h4>
-            </div>
-            <div class="icon">
-                <!-- Trigger/Open The Modal -->
-                <button id="myBtn"><img src="{%static 'kind/Cardiology.jpg' %}" alt="heart"></button>
-
-                <!-- The Modal -->
-                <div id="myModal" class="modal">
-
-                    <!-- Modal content -->
-                    <div class="modal-content">
-                        <span class="close">&times;</span>
-                        <p>Some -1 text in the Modal..</p>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-        <div class="box1">
-            <div class="title">
-                <h3>骨科</h3>
-                <h4>3篇文章</h4>
-            </div>
-            <div class="icon">
-                <!-- Trigger/Open The Modal -->
-                <button id="myBtn"><img src="{%static 'kind/Orthopedics.jpg' %}" alt="heart"></button>
-
-                <!-- The Modal -->
-                <div id="myModal" class="modal">
-
-                    <!-- Modal content -->
-                    <div class="modal-content">
-                        <span class="close">&times;</span>
-                        <p>Some 0 text in the Modal..</p>
-                    </div>
-
-                </div>
-            </div>
-
-        </div>
-        <div class="box1">
-            <div class="title">
-                <h3>小兒科</h3>
-                <h4>6篇文章</h4>
-            </div>
-            <div class="icon">
-                <!-- Trigger/Open The Modal -->
-                <button id="myBtn"><img src="{%static 'kind/Pediatrics.jpg' %}" alt="heart"></button>
-
-                <!-- The Modal -->
-                <div id="myModal" class="modal">
-
-                    <!-- Modal content -->
-                    <div class="modal-content">
-                        <span class="close">&times;</span>
-                        <p>Some 1 text in the Modal..</p>
-                    </div>
-
-                </div>
-            </div>
-
-        </div>
-        <div class="box1">
-            <div class="title">
-                <h3>腦科</h3>
-                <h4>2篇文章</h4>
-            </div>
-            <div class="icon">
-                <!-- Trigger/Open The Modal -->
-                <button id="#myBtn"> <img src="{%static 'kind/neurologist.jpg' %}" alt="heart"></button>
-
-                <!-- The Modal -->
-                <div id="myModal" class="modal">
-
-                    <!-- Modal content -->
-                    <div class="modal-content">
-                        <span class="close">&times;</span>
-                        <p>Some 2 text in the Modal..</p>
-                    </div>
-
-                </div>
-            </div>
-
-        </div>
-        <div class="box1">
-            <div class="title">
-                <h3>婦產科</h3>
-                <h4>6篇文章</h4>
-            </div>
-            <div class="icon">
-                <!-- Trigger/Open The Modal -->
-                <button id="myBtn"> <img src="{%static 'kind/Obstetrics_and_Gynecology.jpg' %}" alt="heart"></button>
-
-                <!-- The Modal -->
-                <div id="myModal" class="modal">
-
-                    <!-- Modal content -->
-                    <div class="modal-content">
-                        <span class="close">&times;</span>
-                        <p>Some 3 text in the Modal..</p>
-
-                    </div>
-
-                </div>
-            </div>
-
-        </div>
-
-    </div>
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
-        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
-        crossorigin="anonymous"></script>
     <script>
+
         // Get the modal
         var index;
-        $("button").click(function () {
+        $("Button").click(function () {
 
 
-            index = $("button").index(this);
+            index = $("Button").index(this);
             var str = $("h4").eq(index).text();
             var num = str.match(/\d+/);
             $(".modal").eq(index).css("display", "block");
@@ -227,14 +370,13 @@
             var i;
             for (i = 0; i < parseInt(num[0]); i++) {
                 var bt = $("<button></button>");
-                bt.text("ddd");
+                bt.text("水腫經驗分享");
                 $(".modal-content").eq(index).append(bt);
             }
 
         });
 
         // Get the button that opens the modal
-
 
         // Get the <span> element that closes the modal
 
@@ -243,7 +385,7 @@
 
         // When the user clicks on <span> (x), close the modal
         $(".close").click(function () {
-            $(".modal-content").eq(index).children("button").remove();
+            $(".modal-content").eq(index).children("Button").remove();
             $(".modal").eq(index).css("display", "none");
 
         });
@@ -255,7 +397,30 @@
             }
         }
 
+        var clicked = false, clickX;
+        $(document).on({
+            'mousemove': function (e) {
+                clicked && updateScrollPos(e);
+            },
+            'mousedown': function (e) {
+                e.preventDefault();
+                clicked = true;
+                clickX = e.pageX;
+            },
+            'mouseup': function () {
+                clicked = false;
+                $('html').css('cursor', 'auto');
+            }
+        });
+
+        var updateScrollPos = function (e) {
+            $('html').css('cursor', 'grabbing');
+            $(window).scrollLeft($(window).scrollLeft() + (clickX - e.pageX));
+        }
+
+
     </script>
+
 </body>
 
 </html>
