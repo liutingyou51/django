@@ -16,6 +16,6 @@ class Post(models.Model):
 class Comment(models.Model):
     comment_post = models.ForeignKey('post', on_delete = models.CASCADE)
     comment_content= models.TextField(blank=False)
-    comment_datetime = models.DateTimeField(null=False, default = timezone.now())
+    comment_datetime = models.DateTimeField(null=False, default = timezone.now)
 
     

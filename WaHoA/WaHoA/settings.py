@@ -36,7 +36,6 @@ STATICFILES_DIRS = [
 ]
 
 INSTALLED_APPS = [
-    'post',
     'user',
     'datetimepicker',
     'django.contrib.admin',
@@ -46,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'reg.apps.RegConfig',
+    'post.apps.PostConfig'
     
 ]
 

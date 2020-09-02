@@ -102,7 +102,7 @@
 </head>
 
 <body>
-    <form action="{%url 'add_comment_2'}" method="POST"}>
+    <form action="{%url 'post:add_comment_2'}" method="POST"}>
     {%csrf_token%}
         <div class="container">
             <ul id="myUL" class="tags"></ul>

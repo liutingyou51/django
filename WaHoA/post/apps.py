@@ -1,5 +1,5 @@
 from django.apps import AppConfig
 
 
-class CreatePostConfig(AppConfig):
-    name = 'create_post'
+class PostConfig(AppConfig):
+    name = 'post'

@@ -199,7 +199,7 @@
 
 <body>
 
-    <form id="regForm", action="{%url 'register'%}" method="POST"}>
+    <form id="regForm", action="{%url 'register'%}" method="POST">
         {%csrf_token%}
         <section>
             <div class="logo1">
@@ -447,7 +447,7 @@
 <script src="/static/datetimepicker/build/jquery.datetimepicker.full.min.js"></script>
 <script>
     jQuery('#datetimepicker').datetimepicker({
-        format: 'd.m.Y H:i:s'
+        format: 'Y-m-d H:i:s'
     });
 </script>
 
