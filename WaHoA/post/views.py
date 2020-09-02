@@ -23,7 +23,14 @@ def get_post(request):
     return render(request, 'user/myarticle/myarticle_addtime.html', {'number':number,'headpicture':headpicture}) #我的發文
 
 def get_favorite(request):
-    return render(request, 'user/myfavorite/myfavorite.html') #我的收藏
+    gender = request.user.gender
+    headpicture=""
+    if gender == "男male":
+        headpicture="/static/head_boy.jpg"
+    else:
+        headpicture="/static/head_girl.jpg"
+    return render(request, 'user/myfavorite/myfavorite.html', {'headpicture':headpicture})
+    
     
 @xframe_options_sameorigin
 def add_comment_2(request):
