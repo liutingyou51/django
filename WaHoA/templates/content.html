@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,14 +7,192 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="contentstyle.css">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    {%load static%}
+    <style>
+        iframe.comment {
+            vertical-align: top;
+            border: none;
+            background-color: white;
+            width: 100%;
+        }
 
+        div.modal-body {
+            height: max-content;
+        }
+
+        .badge {
+            font-size: 16px;
+            margin-right: 5px;
+        }
+
+        div.comments {
+            margin-top: 15px;
+        }
+
+        .media {
+            margin-bottom: 25px;
+        }
+    </style>
 </head>
 
 <body>
+
+    <div class="container">
+        <!-- Left-aligned media object -->
+        <div class="media">
+            <a href="#" class="atc" data-toggle="modal" data-target="#exampleModalLong1">
+
+                <div class="media-left">
+                    <i class='fas fa-user-circle' style='font-size:24px;'></i>
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading">林彥享</h4>
+                    <h3 class="media-title">燙傷處理秘訣</h3>
+                    <i class='fas fa-heart' style='font-size:20px;color:pink'>&nbsp;17&nbsp;</i>
+                    <i class='far fa-comment' style='font-size:20px'>&nbsp;3&nbsp;</i>
+                    <i class='far fa-folder' style='font-size:20px'></i>
+                </div>
+            </a>
+
+            <div class="modal fade" id="exampleModalLong1" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">林彥享的燙傷處理秘訣#2 <br><sub>|皮膚科</sub></h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div>
+                                今天來跟大家分享個我是如何處理燙傷後續換藥的，如果想看燙傷當下的故事的可以到#1去看看(￣∇￣)(以下畫面可能引起不適請斟酌點開) 
+                                <hr><a href="#" class="badge badge-success">燙傷</a><a href="#"
+                                    class="badge badge-info">後續處理</a><a href="#" class="badge badge-dark">我是全能小畫家</a>
+                            </div>
+                            <div class="comments">
+                                <div class="media">
+                                    <img src="{%static 'head_boy.jpg'%}" class="align-self-start mr-3" style="width:55px">
+                                    <div class="media-body">
+                                        <h5 style="color: dimgray;">B1<span style="font-size: 15px;color: #aaa;">_匿名
+                                                20200807
+                                            </span></h5>
+                                        <p>感謝大神!!小弟的傷疤真的越來越淡了(感動</p>
+                                    </div>
+                                </div>
+                                <div class="media">
+                                    <img src="{%static 'head_boy.jpg'%}" class="align-self-start mr-3" style="width:55px">
+                                    <div class="media-body">
+                                        <h5 style="color: dimgray;">B2<span style="font-size: 15px;color: #aaa;">_匿名
+                                                20200807
+                                            </span></h5>
+                                        <p>這個標籤是甚麼鬼哈哈XDD</p>
+                                    </div>
+                                </div>
+                                <div class="media">
+                                    <img src="{%static 'head_girl.jpg'%}" class="align-self-start mr-3" style="width:55px">
+                                    <div class="media-body">
+                                        <h5 style="color: dimgray;">B3<span style="font-size: 15px;color: #aaa;">_匿名
+                                                20200807
+                                            </span></h5>
+                                        <p>也很推薦oiiyu的藥膏，冰冰涼涼的不黏膩，而且擦了半個月疤痕幾乎就消失了!重點是適合月底的窮學生qq就是我本人</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <iframe src="{%url 'post:add_comment_2' %}" class="comment"></iframe>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary">編輯</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+        </div>
+    </div>
+    <div class="container">
+
+        <!-- Left-aligned media object -->
+
+
+        <div class="media">
+            <a href="#" class="atc" data-toggle="modal" data-target="#exampleModalLong1">
+
+                <div class="media-left">
+                    <i class='fas fa-user-circle' style='font-size:24px;'></i>
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading">林彥享</h4>
+                    <h3 class="media-title">燙傷處理秘訣</h3>
+                    <i class='fas fa-heart' style='font-size:20px;color:pink'>&nbsp;17&nbsp;</i>
+                    <i class='far fa-comment' style='font-size:20px'>&nbsp;3&nbsp;</i>
+                    <i class='far fa-folder' style='font-size:20px'></i>
+                </div>
+            </a>
+
+            <div class="modal fade" id="exampleModalLong1" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">林彥享的燙傷處理秘訣#2 <br><sub>|皮膚科</sub>
+                            </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div>
+                                今天來跟大家分享個我是如何處理燙傷後續換藥的，如果想看燙傷當下的故事的可以到#1去看看(￣∇￣)(以下畫面可能引起不適請斟酌點開) 
+                                <hr><a href="#" class="badge badge-success">燙傷</a><a href="#"
+                                    class="badge badge-info">後續處理</a><a href="#" class="badge badge-dark">我是全能小畫家</a>
+                            </div>
+                            <div class="comments">
+                                <div class="media">
+                                    <img src="頭貼範例.png" class="align-self-start mr-3" style="width:55px">
+                                    <div class="media-body">
+                                        <h5 style="color: dimgray;">B1<span style="font-size: 15px;color: #aaa;">_匿名
+                                                20200807
+                                            </span></h5>
+                                        <p>感謝大神!!小弟的傷疤真的越來越淡了(感動</p>
+                                    </div>
+                                </div>
+                                <div class="media">
+                                    <img src="頭貼範例.png" class="align-self-start mr-3" style="width:55px">
+                                    <div class="media-body">
+                                        <h5 style="color: dimgray;">B2<span style="font-size: 15px;color: #aaa;">_匿名
+                                                20200807
+                                            </span></h5>
+                                        <p>這個標籤是甚麼鬼哈哈XDD</p>
+                                    </div>
+                                </div>
+                                <div class="media">
+                                    <img src="頭貼範例.png" class="align-self-start mr-3" style="width:55px">
+                                    <div class="media-body">
+                                        <h5 style="color: dimgray;">B3<span style="font-size: 15px;color: #aaa;">_匿名
+                                                20200807
+                                            </span></h5>
+                                        <p>也很推薦oiiyu的藥膏，冰冰涼涼的不黏膩，而且擦了半個月疤痕幾乎就消失了!重點是適合月底的窮學生qq就是我本人</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <iframe src="add_comment_2.html" class="comment"></iframe>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary">編輯</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+        </div>
+    </div>
 
     <div class="container">
 
@@ -21,72 +200,156 @@
 
 
         <div class="media">
-            <a href="#" class="atc">
+            <a href="#" class="atc" data-toggle="modal" data-target="#exampleModalLong1">
+
                 <div class="media-left">
                     <i class='fas fa-user-circle' style='font-size:24px;'></i>
                 </div>
                 <div class="media-body">
-                    <h4 class="media-heading">陳冠妤-成大醫工</h4>
-                    <h3 class="media-title">成大醫院發燒新聞</h3>
+                    <h4 class="media-heading">林彥享</h4>
+                    <h3 class="media-title">燙傷處理秘訣</h3>
                     <i class='fas fa-heart' style='font-size:20px;color:pink'>&nbsp;17&nbsp;</i>
                     <i class='far fa-comment' style='font-size:20px'>&nbsp;3&nbsp;</i>
                     <i class='far fa-folder' style='font-size:20px'></i>
-
                 </div>
             </a>
+
+            <div class="modal fade" id="exampleModalLong1" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">林彥享的燙傷處理秘訣#2 <br><sub>|皮膚科</sub>
+                            </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div>
+                                今天來跟大家分享個我是如何處理燙傷後續換藥的，如果想看燙傷當下的故事的可以到#1去看看(￣∇￣)(以下畫面可能引起不適請斟酌點開) 
+                                <hr><a href="#" class="badge badge-success">燙傷</a><a href="#"
+                                    class="badge badge-info">後續處理</a><a href="#" class="badge badge-dark">我是全能小畫家</a>
+                            </div>
+                            <div class="comments">
+                                <div class="media">
+                                    <img src="頭貼範例.png" class="align-self-start mr-3" style="width:55px">
+                                    <div class="media-body">
+                                        <h5 style="color: dimgray;">B1<span style="font-size: 15px;color: #aaa;">_匿名
+                                                20200807
+                                            </span></h5>
+                                        <p>感謝大神!!小弟的傷疤真的越來越淡了(感動</p>
+                                    </div>
+                                </div>
+                                <div class="media">
+                                    <img src="頭貼範例.png" class="align-self-start mr-3" style="width:55px">
+                                    <div class="media-body">
+                                        <h5 style="color: dimgray;">B2<span style="font-size: 15px;color: #aaa;">_匿名
+                                                20200807
+                                            </span></h5>
+                                        <p>這個標籤是甚麼鬼哈哈XDD</p>
+                                    </div>
+                                </div>
+                                <div class="media">
+                                    <img src="頭貼範例.png" class="align-self-start mr-3" style="width:55px">
+                                    <div class="media-body">
+                                        <h5 style="color: dimgray;">B3<span style="font-size: 15px;color: #aaa;">_匿名
+                                                20200807
+                                            </span></h5>
+                                        <p>也很推薦oiiyu的藥膏，冰冰涼涼的不黏膩，而且擦了半個月疤痕幾乎就消失了!重點是適合月底的窮學生qq就是我本人</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <iframe src="add_comment_2.html" class="comment"></iframe>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary">編輯</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
         </div>
-        <hr>
+    </div>
+    <div class="container">
+
+        <!-- Left-aligned media object -->
+
 
         <div class="media">
-            <a href="#" class="atc">
+            <a href="#" class="atc" data-toggle="modal" data-target="#exampleModalLong1">
+
                 <div class="media-left">
                     <i class='fas fa-user-circle' style='font-size:24px;'></i>
                 </div>
                 <div class="media-body">
-                    <h4 class="media-heading">陳冠妤-成大醫工</h4>
-                    <h3 class="media-title">成大醫院發燒新聞</h3>
+                    <h4 class="media-heading">林彥享</h4>
+                    <h3 class="media-title">燙傷處理秘訣</h3>
                     <i class='fas fa-heart' style='font-size:20px;color:pink'>&nbsp;17&nbsp;</i>
                     <i class='far fa-comment' style='font-size:20px'>&nbsp;3&nbsp;</i>
                     <i class='far fa-folder' style='font-size:20px'></i>
                 </div>
             </a>
+
+            <div class="modal fade" id="exampleModalLong1" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">林彥享的燙傷處理秘訣#2 <br><sub>|皮膚科</sub>
+                            </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div>
+                                今天來跟大家分享個我是如何處理燙傷後續換藥的，如果想看燙傷當下的故事的可以到#1去看看(￣∇￣)(以下畫面可能引起不適請斟酌點開) 
+                                <hr><a href="#" class="badge badge-success">燙傷</a><a href="#"
+                                    class="badge badge-info">後續處理</a><a href="#" class="badge badge-dark">我是全能小畫家</a>
+                            </div>
+                            <div class="comments">
+                                <div class="media">
+                                    <img src="頭貼範例.png" class="align-self-start mr-3" style="width:55px">
+                                    <div class="media-body">
+                                        <h5 style="color: dimgray;">B1<span style="font-size: 15px;color: #aaa;">_匿名
+                                                20200807
+                                            </span></h5>
+                                        <p>感謝大神!!小弟的傷疤真的越來越淡了(感動</p>
+                                    </div>
+                                </div>
+                                <div class="media">
+                                    <img src="頭貼範例.png" class="align-self-start mr-3" style="width:55px">
+                                    <div class="media-body">
+                                        <h5 style="color: dimgray;">B2<span style="font-size: 15px;color: #aaa;">_匿名
+                                                20200807
+                                            </span></h5>
+                                        <p>這個標籤是甚麼鬼哈哈XDD</p>
+                                    </div>
+                                </div>
+                                <div class="media">
+                                    <img src="頭貼範例.png" class="align-self-start mr-3" style="width:55px">
+                                    <div class="media-body">
+                                        <h5 style="color: dimgray;">B3<span style="font-size: 15px;color: #aaa;">_匿名
+                                                20200807
+                                            </span></h5>
+                                        <p>也很推薦oiiyu的藥膏，冰冰涼涼的不黏膩，而且擦了半個月疤痕幾乎就消失了!重點是適合月底的窮學生qq就是我本人</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <iframe src="{%url 'post:add_comment_2' %}" class="comment"></iframe>
+                        </div>
+                        <div class="modal-footer">
+
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
         </div>
-        <hr>
-
-        <div class="media">
-            <a href="#" class="atc">
-                <div class="media-left">
-                    <i class='fas fa-user-circle' style='font-size:24px;'></i>
-                </div>
-                <div class="media-body">
-                    <h4 class="media-heading">陳冠妤-成大醫工</h4>
-                    <h3 class="media-title">成大醫院發燒新聞</h3>
-                    <i class='fas fa-heart' style='font-size:20px;color:pink'>&nbsp;17&nbsp;</i>
-                    <i class='far fa-comment' style='font-size:20px'>&nbsp;3&nbsp;</i>
-                    <i class='far fa-folder' style='font-size:20px'></i>
-                </div>
-            </a>
-        </div>
-        <hr>
-
-        <div class="media">
-            <a href="#" class="atc">
-                <div class="media-left">
-                    <i class='fas fa-user-circle' style='font-size:24px;'></i>
-                </div>
-                <div class="media-body">
-                    <h4 class="media-heading">陳冠妤-成大醫工</h4>
-                    <h3 class="media-title">成大醫院發燒新聞</h3>
-                    <i class='fas fa-heart' style='font-size:20px;color:pink'>&nbsp;17&nbsp;</i>
-                    <i class='far fa-comment' style='font-size:20px'>&nbsp;3&nbsp;</i>
-                    <i class='far fa-folder' style='font-size:20px'></i>
-                </div>
-            </a>
-        </div>
-        <hr>
-
-
-
+    </div>
 
 
 </body>
