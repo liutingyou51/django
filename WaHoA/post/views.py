@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Post
+from .models import Post, Comment
 from django.views.decorators.clickjacking import xframe_options_sameorigin
 from django.utils import timezone
 # Create your views here.
@@ -9,9 +9,10 @@ from django.utils import timezone
 def home(request):   #已登入的首頁
     gender =request.user.gender
     if gender=='男male':
-        return render(request, 'home.html',{"headpicture":"/static/head_boy.jpg"}) 
+        return render(request, 'home.html',{"headpicture":"/static/head_boy.jpg"})
     else:
         return render(request, 'home.html',{"headpicture":"/static/head_girl.jpg"}) 
+    #home.html用url叫圖片
 
 def get_post(request):
     number = Post.objects.all()
@@ -22,7 +23,7 @@ def get_post(request):
     else:
         headpicture="/static/head_girl.jpg"
     return render(request, 'user/myarticle/myarticle_addtime.html', {'number':number,'headpicture':headpicture}) #我的發文
-
+    #myarticle_add.html用url叫圖片
 def get_favorite(request):
     gender = request.user.gender
     headpicture=""
@@ -31,11 +32,12 @@ def get_favorite(request):
     else:
         headpicture="/static/head_girl.jpg"
     return render(request, 'user/myfavorite/myfavorite.html', {'headpicture':headpicture})
+    #用url叫圖片
     
 @xframe_options_sameorigin
 def post_article_choose(request):
-    if request.method == 'POST': #是get不是post
-        title = request.POST['title'] #沒找到
+    if request.method == 'POST': 
+        title = request.POST['title'] 
         content = request.POST['content']
         pub_date = timezone.now()
         Newpost = Post.objects.create(title = title, content = content, pub_date=pub_date)
@@ -48,6 +50,7 @@ def post_article_write(request):
 
 @xframe_options_sameorigin
 def create_post(request):
+    print(request.method)
     if request.method == 'POST':
         kind = request.POST['kind']
         print(Post.objects.latest('pub_date'))
@@ -59,7 +62,10 @@ def create_post(request):
 
 @xframe_options_sameorigin
 def add_comment_2(request):
-    request.method=='POST'
-    return render(request,'user/myarticle/add_comment_2.html')
-
+    gender =request.user.gender
+    if gender=='男male':
+        return render(request,'user/myarticle/add_comment_2.html',{"headpicture":"/head_boy.jpg"})
+    else:
+        return render(request,'user/myarticle/add_comment_2.html',{"headpicture":"/head_girl.jpg"})
+    #用url叫會被擋，改用static
 
