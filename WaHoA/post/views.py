@@ -34,6 +34,7 @@ def get_favorite(request):
     
 @xframe_options_sameorigin
 def add_comment_2(request):
+    rquest.method=='POST'
     return render(request,'user/myarticle/add_comment_2.html')
 
 

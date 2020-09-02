@@ -249,7 +249,7 @@
                 </div>
                 <div class="icon">
                     <!-- Trigger/Open The Modal -->
-                    <button id="myBtn"><img src="{%static 'kind/Cardiology.jpg' %}" alt="heart"></button>
+                    <button class="myBtn"><img src="{%static 'kind/Cardiology.jpg' %}" alt="heart"></button>
 
                     <!-- The Modal -->
                     <div id="myModal" class="modal">
@@ -270,7 +270,7 @@
                 </div>
                 <div class="icon">
                     <!-- Trigger/Open The Modal -->
-                    <button id="myBtn"><img src="{%static 'kind/Orthopedics.jpg' %}" alt="heart"></button>
+                    <button class="myBtn"><img src="{%static 'kind/Orthopedics.jpg' %}" alt="heart"></button>
 
                     <!-- The Modal -->
                     <div id="myModal" class="modal">
@@ -292,7 +292,7 @@
                 </div>
                 <div class="icon">
                     <!-- Trigger/Open The Modal -->
-                    <button id="myBtn"><img src="{%static 'kind/Pediatrics.jpg' %}" alt="heart"></button>
+                    <button class="myBtn"><img src="{%static 'kind/Pediatrics.jpg' %}" alt="heart"></button>
 
                     <!-- The Modal -->
                     <div id="myModal" class="modal">
@@ -314,7 +314,7 @@
                 </div>
                 <div class="icon">
                     <!-- Trigger/Open The Modal -->
-                    <button id="myBtn"> <img src="{%static 'kind/neurologist.jpg' %}" alt="heart"></button>
+                    <button class="myBtn"> <img src="{%static 'kind/neurologist.jpg' %}" alt="heart"></button>
 
                     <!-- The Modal -->
                     <div id="myModal" class="modal">
@@ -359,10 +359,10 @@
 
         // Get the modal
         var index;
-        $("Button").click(function () {
+        $(".myBtn").click(function () {
 
 
-            index = $("Button").index(this);
+            index = $(".myBtn").index(this);
             var str = $("h4").eq(index).text();
             var num = str.match(/\d+/);
             $(".modal").eq(index).css("display", "block");
@@ -385,7 +385,7 @@
 
         // When the user clicks on <span> (x), close the modal
         $(".close").click(function () {
-            $(".modal-content").eq(index).children("Button").remove();
+            $(".modal-content").eq(index).children("button").remove();
             $(".modal").eq(index).css("display", "none");
 
         });
