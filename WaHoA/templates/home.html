@@ -169,7 +169,7 @@
     <title>首頁</title>
     <script>
         function ResetPost() {
-            var url = "{% url 'reg:post_article_write' %}";
+            var url = "{% url 'post:post_article_write' %}";
             var el = document.getElementById('postiframe');
             el.src = url;
         }
@@ -273,6 +273,7 @@
         </section>
     </div>
     <div class="below">
+
         <section id="content">
             <div class="container">
                 <div class="row">
@@ -308,7 +309,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <iframe id="postiframe" class="post step1" src="{% url 'reg:post_article_write' %}"></iframe>
+                    <iframe id="postiframe" class="post step1" src="{% url 'post:post_article_write' %}"></iframe>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-dark" onclick="ResetPost()">捨棄貼文</button>

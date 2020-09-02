@@ -39,14 +39,6 @@ def register(request):
 def content(request):
     return render(request,"content.html")
 
-@xframe_options_sameorigin
-def post_article_choose(request):
-    return render(request,'post_article_choose.html')
-
-@xframe_options_sameorigin
-def post_article_write(request):
-    return render(request,'post_article_write.html')
-
 def registerValidate(request):
     try:
         NewUser.objects.get(username=request.POST['username'])

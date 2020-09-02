@@ -8,7 +8,7 @@ from django.utils import timezone
 class Post(models.Model):
     title = models.CharField(max_length=100)
     content = models.TextField(blank=False)
-    kind = models.CharField(max_length=100)
+    kind = models.CharField(max_length=100, null=True)
     pub_date = models.DateTimeField('date published')#標題從pub_date->date published ,用了verbose name
     def __str__(self):
         return self.title

@@ -118,59 +118,68 @@
 </head>
 
 <body>
-    <div class="chooseBoard">
-        <div class="btn-group dropright">
-            <button type="button" class="btn btnchooseboard btn-md btn-dark dropdown-toggle" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-                請選擇看板
-            </button>
-            <ul class="dropdown-menu scrollable-menu boards" role="menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="#">癌症</a>
-                <a class="dropdown-item" href="#">家醫科</a>
-                <a class="dropdown-item" href="#">內科</a>
-                <a class="dropdown-item" href="#">外科</a>
-                <a class="dropdown-item" href="#">小兒科</a>
-                <a class="dropdown-item" href="#">婦產科</a>
-                <a class="dropdown-item" href="#">骨科</a>
-                <a class="dropdown-item" href="#">神經外科</a>
-                <a class="dropdown-item" href="#">泌尿科</a>
-                <a class="dropdown-item" href="#">耳鼻喉科</a>
-                <a class="dropdown-item" href="#">眼科</a>
-                <a class="dropdown-item" href="#">皮膚科</a>
-                <a class="dropdown-item" href="#">神經科</a>
-                <a class="dropdown-item" href="#">精神科</a>
-                <a class="dropdown-item" href="#">復健科</a>
-                <a class="dropdown-item" href="#">整型外科</a>
-                <a class="dropdown-item" href="#">急診醫學科</a>
-                <a class="dropdown-item" href="#">牙科</a>
-                <a class="dropdown-item" href="#">中醫科</a>
-                <a class="dropdown-item" href="#">洗腎科</a>
-                <a class="dropdown-item" href="#">其他科</a>
-            </ul>
-        </div>
-    </div>
-    <div class="chooseTag">
-        <div id="addTAG" class="input-group mb-3">
-            <input type="text" id="myInput" class="form-control" placeholder="請輸入標籤 例如:疾病、症狀..." aria-label="請輸入標籤"
-                aria-describedby="button-addon2">
-            <div class="input-group-append">
-                <button onclick="newElement()" class="btn btn-dark addBtn" type="button" id="button-addon2">新增</button>
+    <form action="{% url 'post:create' %}" method="POST">
+    {% csrf_token %}
+        <div class="chooseBoard">
+            <div class="btn-group dropright">
+                <button type="button" class="btn btnchooseboard btn-md btn-dark dropdown-toggle" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false" name = "kind">
+                    請選擇看板
+                </button>
+                <ul class="dropdown-menu scrollable-menu boards" role="menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#">癌症</a>
+                    <a class="dropdown-item" href="#">家醫科</a>
+                    <a class="dropdown-item" href="#">內科</a>
+                    <a class="dropdown-item" href="#">外科</a>
+                    <a class="dropdown-item" href="#">小兒科</a>
+                    <a class="dropdown-item" href="#">婦產科</a>
+                    <a class="dropdown-item" href="#">骨科</a>
+                    <a class="dropdown-item" href="#">神經外科</a>
+                    <a class="dropdown-item" href="#">泌尿科</a>
+                    <a class="dropdown-item" href="#">耳鼻喉科</a>
+                    <a class="dropdown-item" href="#">眼科</a>
+                    <a class="dropdown-item" href="#">皮膚科</a>
+                    <a class="dropdown-item" href="#">神經科</a>
+                    <a class="dropdown-item" href="#">精神科</a>
+                    <a class="dropdown-item" href="#">復健科</a>
+                    <a class="dropdown-item" href="#">整型外科</a>
+                    <a class="dropdown-item" href="#">急診醫學科</a>
+                    <a class="dropdown-item" href="#">牙科</a>
+                    <a class="dropdown-item" href="#">中醫科</a>
+                    <a class="dropdown-item" href="#">洗腎科</a>
+                    <a class="dropdown-item" href="#">其他科</a>
+                </ul>
             </div>
         </div>
-        <ul id="myUL" class="tags">
+        <div class="chooseTag">
+            <div id="addTAG" class="input-group mb-3">
+                <input type="text" id="myInput" class="form-control" placeholder="請輸入標籤 例如:疾病、症狀..." aria-label="請輸入標籤"
+                    aria-describedby="button-addon2">
+                <div class="input-group-append">
+                    <button onclick="newElement()" class="btn btn-dark addBtn" type="button" id="button-addon2">新增</button>
+                </div>
+            </div>
+            <ul id="myUL" class="tags">
 
-        </ul>
-    </div>
-    <div class="foot fixed-bottom">
-        <a href="{% url 'reg:post_article_write' %}" onclick="funback()"><button type="button" class="btn step btn-md btn-warning">上一步</button></a>
-        <a href="#"><button type="button" class="btn step btn-md btn-warning">發文</button></a>
-    </div>
+            </ul>
+        </div>
+        <div class="foot fixed-bottom">
+            <a href="#" onclick="funback()"><button type="button" class="btn step btn-md btn-warning">上一步</button></a>
+            <a href="#" onclick="Redirect()"><button type="submit" class="btn step btn-md btn-warning">發文</button></a>
+        </div>
     <script>
         function funback() {
             window.history.back()
             //self.history.back();
             //javascript:parent.document.getElementById('b_frame').contentWindow.history.back();  
         }
+    </script>
+    </form>
+    <script>
+        function Redirect() {
+        //發文按鈕按下去後導回「我的文章」頁面
+            window.top.location.replace("http://127.0.0.1:8000/user/myarticles/");
+    }      
     </script>
 
     <script>
