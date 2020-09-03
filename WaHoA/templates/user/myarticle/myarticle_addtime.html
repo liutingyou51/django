@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="zh-TW">
 
@@ -23,7 +22,6 @@
         crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600;700&display=swap" rel="stylesheet">
     <title>我的文章</title>
-    {%load static%}
     <style>
         * {
             margin: 0;
@@ -37,10 +35,11 @@
         }
 
         .wrap {
+            margin: auto;
             height: 90vh;
             width: max-content;
             padding-top: 20vh;
-            padding-left: 20px;
+            padding-left: 10vh;
         }
 
         .wrap:hover {
@@ -117,24 +116,24 @@
         nav {
             background-color: #77a88d;
         }
-        /*時間軸上的頭貼，放科別照片*/
+
         button.atc {
             width: 75px;
             height: 75px;
             border-radius: 50%;
-            background-image: url("{%static 'kind/Pediatrics.jpg' %}");
+            background-image: url("頭貼範例.png");
             background-repeat: no-repeat;
             background-size: cover;
         }
 
         button.atc:hover {
-            background-image: url("{%static 'kind/Pediatrics.jpg' %}");
+            background-image: url("頭貼範例.jpg");
         }
 
         a.logo {
             width: 253px;
             height: 79.4px;
-            background-image: url("{%static 'wahoa.png'%}");
+            background-image: url("logo2_0.png");
             background-repeat: no-repeat;
             background-size: cover;
         }
@@ -145,7 +144,7 @@
         }
 
         button.avatar {
-            background-image: url("{{headpicture}}");
+            background-image: url("頭貼範例.png");
             background-repeat: no-repeat;
             background-size: cover;
             cursor: pointer;
@@ -200,10 +199,12 @@
             padding: 5vh;
             width: 100%;
         }
-        div.board { 
-            position: absolute; 
-            right: 10px; 
-        } 
+
+        div.board {
+            position: absolute;
+            right: 10px;
+        }
+
         .scrollable-menu {
             height: auto;
             max-height: 240px;
@@ -236,10 +237,49 @@
         .media {
             margin-bottom: 25px;
         }
+
+        div.give {
+            float: right;
+        }
+
+
+        a.icon {
+            padding: 2px;
+            border-radius: 50%;
+            margin-right: 10px;
+            width: 27px;
+            height: 27px;
+            display: inline-flex;
+            justify-content: center;
+            outline: none;
+        }
+
+        a.already {
+            padding: 5px;
+            background-color: #f8dad4;
+        }
+
+        div.give a:hover {
+            background-color: #e0e0db;
+        }
+
+        div.give img {
+            width: 25px;
+            height: 25px;
+        }
+
+        div.total span {
+            color: crimson;
+        }
     </style>
     <style id="addtime">
     </style>
     <script>
+        function ResetPost() {
+            var url = "post_article/post_article_write.html"
+            var el = document.getElementById('postiframe');
+            el.src = url;
+        }
         $(function () {
             $('[data-toggle="popover"]').popover()
         })
@@ -288,6 +328,12 @@
             $(window).scrollLeft($(window).scrollLeft() + (clickX - e.pageX));
         }
     </script>
+    <script>
+        function myFunction(x) {
+            x.classList.toggle("already");
+        }
+
+    </script>
 </head>
 
 <body>
@@ -327,102 +373,67 @@
                     <a id="divisionid" href="#" class="atc"></a>
                 </button>
             </li>
-        {% endfor %}      
+        {% endfor %}  
         </ul>
     </div>
     <div class="footer fixed-bottom">
         <button type="button" class="btn btn-dark btn-lg pen" data-toggle="modal"
             data-target="#postarticleWrite">發文</button>
-
     </div>
     {% for item in number %}
-        <div class="modal fade" id="exampleModalLong{{forloop.counter}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">{{item.title}} <br><sub>看板:{{item.kind}}</sub></h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div>
-                            {{item.content}}
-                            <hr><a href="#" class="badge badge-success">燙傷</a><a href="#"
-                                class="badge badge-info">後續處理</a><a href="#" class="badge badge-dark">我是全能小畫家</a>
-                        </div>
-                        <div class="comments">
-                            <div class="media">
-                                <img src="{%static 'head_boy.jpg'%}" class="align-self-start mr-3" style="width:55px">
-                                <div class="media-body">
-                                    <h5 style="color: dimgray;">B1<span style="font-size: 15px;color: #aaa;">_匿名 20200807
-                                        </span></h5>
-                                    <p>感謝大神!!小弟的傷疤真的越來越淡了(感動</p>
-                                </div>
-                            </div>
-                            <div class="media">
-                                <img src="{%static 'head_boy.jpg'%}" class="align-self-start mr-3" style="width:55px">
-                                <div class="media-body">
-                                    <h5 style="color: dimgray;">B2<span style="font-size: 15px;color: #aaa;">_匿名 20200807
-                                        </span></h5>
-                                    <p>這個標籤是甚麼鬼哈哈XDD</p>
-                                </div>
-                            </div>
-                            <div class="media">
-                                <img src="{% static 'head_girl.jpg' %}" class="align-self-start mr-3" style="width:55px">
-                                <div class="media-body">
-                                    <h5 style="color: dimgray;">B3<span style="font-size: 15px;color: #aaa;">_匿名 20200807
-                                        </span></h5>
-                                    <p>也很推薦oiiyu的藥膏，冰冰涼涼的不黏膩，而且擦了半個月疤痕幾乎就消失了!重點是適合月底的窮學生qq就是我本人</p>
-                                </div>
-                            </div>
-                        </div>
-                        <iframe src="{%url 'post:add_comment_2' %}" class="comment"></iframe>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary">編輯</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    {%endfor%}
-    <div class="modal fade" id="exampleModalLong2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+    <div class="modal fade" id="exampleModalLong{{forloop.counter}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">文章標題 <br><sub>科別</sub></h5>
+                    <h5 class="modal-title" id="exampleModalLongTitle">{{item.title}} <br><sub>看板:{{item.kind}}</sub></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     <div>
-                        內文...
-                        <hr><a href="#" class="badge badge-success">標籤</a><a href="#" class="badge badge-info">標籤</a><a
-                            href="#" class="badge badge-dark">標籤</a>
+                        {{item.content}}
+                        <hr><a href="#" class="badge badge-success">燙傷</a><a href="#"
+                            class="badge badge-info">後續處理</a><a href="#" class="badge badge-dark">我是全能小畫家</a>
+                        <hr>
+                        <div class="give"><a onclick="myFunction(this)" class="icon" href="#" tabindex="0"
+                                data-toggle="popover" data-trigger="hover" title="" data-placement="top"
+                                data-content="給予關懷"><img src="{%static 'content/empathy.png'%}"></a><span><a onclick="myFunction(this)"
+                                    class="icon" href="#" tabindex="0" data-toggle="popover" data-trigger="hover"
+                                    title="" data-content="深表懷疑" data-placement="top"><img
+                                        src="{%static 'content/question.png'%}"></a></span><span><a onclick="myFunction(this)" class="icon"
+                                    href="#" tabindex="0" data-toggle="popover" data-trigger="hover" title=""
+                                    data-content="收藏!" data-placement="top"><img src="{%static 'content/favorite.png'%}"></a></span></div>
+                        <div class="total">給予關懷:18 &nbsp 回應:10 &nbsp <span>懷疑:1</span></div>
                     </div>
                     <div class="comments">
                         <div class="media">
-                            <img src="{% static 'head_girl.jpg' %}" class="align-self-start mr-3" style="width:55px">
+                            <img src="{%static 'head_boy.jpg'%}" class="align-self-start mr-3" style="width:55px">
                             <div class="media-body">
-                                <h5 style="color: dimgray;">B1<span style="font-size: 15px;color: #aaa;">_匿名 2020xxxx
+                                <h5 style="color: dimgray;">B1<span style="font-size: 15px;color: #aaa;">_匿名 20200807
                                     </span></h5>
-                                <p>留言內文</p>
+                                <p>感謝大神!!小弟的傷疤真的越來越淡了(感動</p>
+                            </div>
+                        </div>
+                        <div class="media">
+                            <img src="{%static 'head_boy.jpg'%}" class="align-self-start mr-3" style="width:55px">
+                            <div class="media-body">
+                                <h5 style="color: dimgray;">B2<span style="font-size: 15px;color: #aaa;">_匿名 20200807
+                                    </span></h5>
+                                <p>這個標籤是甚麼鬼哈哈XDD</p>
                             </div>
                         </div>
                         <div class="media">
                             <img src="{% static 'head_girl.jpg' %}" class="align-self-start mr-3" style="width:55px">
                             <div class="media-body">
-                                <h5 style="color: dimgray;">B2<span style="font-size: 15px;color: #aaa;">_匿名 2020xxxx
+                                <h5 style="color: dimgray;">B3<span style="font-size: 15px;color: #aaa;">_匿名 20200807
                                     </span></h5>
-                                <p>留言內文</p>
+                                <p>也很推薦oiiyu的藥膏，冰冰涼涼的不黏膩，而且擦了半個月疤痕幾乎就消失了!重點是適合月底的窮學生qq就是我本人</p>
                             </div>
                         </div>
-                        <iframe src="{%url 'post:add_comment_2' %}" class="comment"></iframe>
                     </div>
+                    <iframe src="{%url 'post:add_comment_2' %}" class="comment"></iframe>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary">編輯</button>
@@ -431,6 +442,8 @@
             </div>
         </div>
     </div>
+    {%endfor%}
+
     <div class="modal fade" id="postarticleWrite" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -444,10 +457,10 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <iframe class="post step1" src="{% url 'post:post_article_write' %}"></iframe>
+                    <iframe id="postiframe" class="post step1" src="{% url 'post:post_article_write' %}"></iframe>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-dark" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-dark" onclick="ResetPost()">捨棄貼文</button>
                 </div>
             </div>
         </div>
