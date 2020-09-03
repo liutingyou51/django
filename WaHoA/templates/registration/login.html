@@ -65,6 +65,10 @@
             margin-top: 250px;
             text-align: center;
 
+            width: 100%;
+            margin-top: 250px;
+            text-align: center;
+
         }
 
         .logo {
@@ -106,6 +110,7 @@
 
         }
 
+
         div.avatar {
 
             text-align: center;
@@ -117,6 +122,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+
         }
 
         .form img {
@@ -156,18 +162,28 @@
             text-align: left; 
             padding-left: 20px; 
         }
+
+        a.bottom::after {
+            content: "|";
+            padding-left: 20px;
+        }
+
+        a.enter {
+            text-align: left;
+            padding-left: 20px;
+        }
     </style>
 </head>
 
 <body>
     <div class="left">
         <div class="logo">
-            {%load static%} 
+            {%load static%}
             <img src="{% static 'login/wahoa.png' %}" alt="logo" class="logo">
         </div>
         <div class="words">
             <p>致力於成為能夠整合醫療資訊的平台</p>
-            <hp>並且讓大家想到醫療想到—挖厚阿。</p>
+            <p>並且讓大家想到醫療想到—挖厚阿。</p>
         </div>
     </div>
 
@@ -193,7 +209,7 @@
                     <label for="psw"><b>密碼</b></label>
                     <input type="password" placeholder="******" name="password" required>
 
-                    <button type="submit" >登入</button>
+                    <button type="submit">登入</button>
                     <label class="bottom">
                         <a class="bottom" href="{%url 'reg:beforelogin'%}">回首頁</a>
                         <a class='enter' href="{%url 'register' %}">註冊</a>
