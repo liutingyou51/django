@@ -1,394 +1,762 @@
-<html lang="en">
+<!doctype html>
+<html lang="zh-TW">
 
 <head>
-    <title>content</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
-    {%load static%}
-    <style>
-        iframe.comment {
-            vertical-align: top;
-            border: none;
-            background-color: white;
-            width: 100%;
-        }
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+    crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600;700&display=swap" rel="stylesheet">
+  <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    {% load static %}
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      font-family: 'Noto Serif TC', serif;
+    }
 
-        div.modal-body {
-            height: max-content;
-        }
+    body {
+      margin-top: 25px;
+    }
 
-        .badge {
-            font-size: 16px;
-            margin-right: 5px;
-        }
+    button {
+      outline: none;
+    }
 
-        div.comments {
-            margin-top: 15px;
-        }
+    a {
+      color: #81a2b4;
+      outline: none;
+    }
 
-        .media {
-            margin-bottom: 25px;
-        }
+    a:hover {
+      text-decoration: none;
+      color: #94b7cc;
+    }
 
-        span {
-            font-size: 20px;
-            text-decoration: none;
-        }
+    iframe.comment {
+      vertical-align: top;
+      border: none;
+      background-color: white;
+      width: 100%;
+    }
 
-        span img {
-            width: 30px;
-            height: 30px;
+    div.modal-body {
+      height: max-content;
+    }
 
-        }
-    </style>
+    .badge {
+      font-size: 16px;
+      margin-right: 5px;
+    }
+
+    div.comments {
+      margin-top: 15px;
+    }
+
+    .media {
+      margin-bottom: 15px;
+    }
+
+    .media-left {
+      display: flex;
+    }
+
+    div.media-heading {
+      margin-left: 5px;
+    }
+
+    .media-title {
+      margin-top: 5px;
+      margin-left: 10px;
+    }
+
+    div.bottomm img {
+      width: 20px;
+      height: 20px;
+      margin-left: 7px;
+      margin-right: 3px;
+    }
+
+    div.give {
+      float: right;
+    }
+
+
+    a.icon {
+      padding: 2px;
+      border-radius: 50%;
+      margin-right: 10px;
+      width: 27px;
+      height: 27px;
+      display: inline-flex;
+      justify-content: center;
+      outline: none;
+    }
+
+    a.already {
+      padding: 5px;
+      background-color: #f8dad4;
+    }
+
+    div.give a:hover {
+      background-color: #e0e0db;
+    }
+
+    div.give img {
+      width: 25px;
+      height: 25px;
+    }
+
+    div.total span {
+      color: crimson;
+    }
+
+    .ya {
+      background-color: whitesmoke;
+    }
+
+    .non {
+      background-color: whitesmoke;
+    }
+  </style>
+  <script>
+    $('#myModal').on('shown.bs.modal', function () {
+      $('#myInput').trigger('focus')
+    })
+    $(function () {
+      $('[data-toggle="popover"]').popover()
+    })
+  </script>
+  <script>
+    function myFunction(x) {
+      x.classList.toggle("already");
+    }
+  </script>
+  <script>
+    $(document).ready(function () {
+      var clicks = 0;
+      $(".empathy").click(function () {
+        clicks++;
+        if (clicks % 2 == 1) { $("#Toast1").toast('show'); }
+        else { $("#Toast11").toast('show'); }
+      });
+    });
+    $(document).ready(function () {
+      var clicks = 0;
+      $(".question").click(function () {
+        clicks++;
+        if (clicks % 2 == 1) { $("#Toast2").toast('show'); }
+        else { $("#Toast22").toast('show'); }
+      });
+    });
+    $(document).ready(function () {
+      var clicks = 0;
+      $(".favorite").click(function () {
+        clicks++;
+        if (clicks % 2 == 1) { $("#Toast3").toast('show'); }
+        else { $("#Toast33").toast('show'); }
+      });
+    });
+  </script>
 </head>
 
 <body>
+  <div class="container">
+    <div class="media">
+      <a href="#" class="atc" data-toggle="modal" data-target="#exampleModalLong1">
 
-    <div class="modal fade" id="exampleModalLong1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+        <div class="media-left">
+          <i class='fas fa-user-circle' style='font-size:24px;'></i>
+          <div class="media-heading">林彥享</div>
+        </div>
+        <div class="media-body">
+          <h3 class="media-title">燙傷處理秘訣</h3>
+          <div class="bottomm">
+            {%load static%}
+            <span><img src="{%static 'content/empathy.png'%}">18</span><span><img src="{%static 'content/question.png'%}">1</span><span><img
+                src="{%static 'content/favorite.png'%}">10</span></div>
+        </div>
+      </a>
+
+      <div class="modal fade" id="exampleModalLong1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">燙傷處理秘訣#2 <br><sub>|皮膚科</sub></h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div>
-                        今天來跟大家分享個我是如何處理燙傷後續換藥的，如果想看燙傷當下的故事的可以到#1去看看(￣∇￣)(以下畫面可能引起不適請斟酌點開)
-
-                        <hr><a href="#" class="badge badge-success">燙傷</a><a href="#"
-                            class="badge badge-info">後續處理</a><a href="#" class="badge badge-dark">我是全能小畫家</a>
-                    </div>
-                    <div class="comments">
-                        <div class="media">
-                            <img src="{%static 'head_boy.jpg'%}" class="align-self-start mr-3" style="width:55px">
-                            <div class="media-body">
-                                <h5 style="color: dimgray;">B1<span style="font-size: 15px;color: #aaa;">_匿名 20200807
-                                    </span></h5>
-                                <p>感謝大神!!小弟的傷疤真的越來越淡了(感動</p>
-                            </div>
-                        </div>
-                        <div class="media">
-                            <img src="{%static 'head_boy.jpg'%}" class="align-self-start mr-3" style="width:55px">
-                            <div class="media-body">
-                                <h5 style="color: dimgray;">B2<span style="font-size: 15px;color: #aaa;">_匿名 20200807
-                                    </span></h5>
-                                <p>這個標籤是甚麼鬼哈哈XDD</p>
-                            </div>
-                        </div>
-                        <div class="media">
-                            <img src="{% static 'head_girl.jpg' %}" class="align-self-start mr-3" style="width:55px">
-                            <div class="media-body">
-                                <h5 style="color: dimgray;">B3<span style="font-size: 15px;color: #aaa;">_匿名 20200807
-                                    </span></h5>
-                                <p>也很推薦oiiyu的藥膏，冰冰涼涼的不黏膩，而且擦了半個月疤痕幾乎就消失了!重點是適合月底的窮學生qq就是我本人</p>
-                            </div>
-                        </div>
-                    </div>
-                    <iframe src="{%url 'post:add_comment_2' %}" class="comment"></iframe>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
-                </div>
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">林彥享的燙傷處理秘訣#2 <br><sub>|皮膚科</sub></h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
             </div>
+            <div class="modal-body">
+              <div>
+                今天來跟大家分享個我是如何處理燙傷後續換藥的，如果想看燙傷當下的故事的可以到#1去看看(￣∇￣)(以下畫面可能引起不適請斟酌點開) Lorem ipsum dolor sit
+                amet
+                consectetur adipisicing elit. Minus magnam ea repellendus autem accusamus esse modi
+                delectus
+                cumque
+                perspiciatis! Voluptate ab, molestias molestiae, labore soluta perspiciatis inventore
+                hic
+                mollitia
+                veniam tenetur earum excepturi possimus nam veritatis totam sequi! Minus non ex itaque
+                aperiam.
+                Reiciendis veritatis fuga illo assumenda quibusdam ex maxime blanditiis sint nihil
+                deleniti
+                at distinctio molestias amet rerum aut expedita delectus qui officiis eligendi maxime?
+                Perspiciatis
+                optio dolore hic nihil assumenda. Dolorum minus similique libero dicta nostrum
+                voluptatem!
+                Aliquam
+                accusantium corporis dolores velit, commodi non consequatur porro. Distinctio, cumque
+                asperiores
+                adipisci iure, sit voluptas sapiente voluptatibus nam quibusdam, nostrum facere? Eius
+                libero
+                dolor
+                quisquam molestias, neque corporis, explicabo officia quod quaerat dolorum tenetur nulla
+                rerum
+                nobis
+                quam numquam dolorum optio modi, quidem nemo asperiores rerum sequi quod. Voluptatibus,
+                repudiandae
+                quod? Eum, qui!
+                <hr><a href="#" class="badge badge-success">燙傷</a><a href="#" class="badge badge-info">後續處理</a><a
+                  href="#" class="badge badge-dark">我是全能小畫家</a>
+                <hr>
+                <div class="give"><a onclick="myFunction(this)" class="icon empathy" href="#" tabindex="0"
+                    data-toggle="popover" data-trigger="hover" title="" data-placement="top" data-content="給予關懷"><img
+                      src="{%static 'content/empathy.png'%}"></a><span><a onclick="myFunction(this)" class="icon question" href="#"
+                      tabindex="0" data-toggle="popover" data-trigger="hover" title="" data-content="深表懷疑"
+                      data-placement="top"><img src="{%static 'content/question.png'%}"></a></span><span><a onclick="myFunction(this)"
+                      class="icon favorite" href="#" tabindex="0" data-toggle="popover" data-trigger="hover" title=""
+                      data-content="收藏!" data-placement="top"><img src="{%static 'content/favorite.png'%}"></a></span></div>
+                <div class="total">給予關懷:18 &nbsp 回應:10 &nbsp <span>懷疑:1</span></div>
+              </div>
+              <div class="comments">
+                <div class="media">
+                  <img src="{%static 'head_boy.jpg'%}" class="align-self-start mr-3" style="width:55px">
+                  <div class="media-body">
+                    <h5 style="color: dimgray;">B1<span style="font-size: 15px;color: #aaa;">_匿名
+                        20200807
+                      </span></h5>
+                    <p>感謝大神!!小弟的傷疤真的越來越淡了(感動</p>
+                  </div>
+                </div>
+                <div class="media">
+                  <img src="{% static 'head_girl.jpg'%}" class="align-self-start mr-3" style="width:55px">
+                  <div class="media-body">
+                    <h5 style="color: dimgray;">B2<span style="font-size: 15px;color: #aaa;">_匿名
+                        20200807
+                      </span></h5>
+                    <p>這個標籤是甚麼鬼哈哈XDD</p>
+                  </div>
+                </div>
+                <div class="media">
+                  <img src="{% static 'head_boy.jpg'%}" class="align-self-start mr-3" style="width:55px">
+                  <div class="media-body">
+                    <h5 style="color: dimgray;">B3<span style="font-size: 15px;color: #aaa;">_匿名
+                        20200807
+                      </span></h5>
+                    <p>也很推薦oiiyu的藥膏，冰冰涼涼的不黏膩，而且擦了半個月疤痕幾乎就消失了!重點是適合月底的窮學生qq就是我本人</p>
+                  </div>
+                </div>
+              </div>
+              <iframe src="{%url 'post:add_comment_2'%}" class="comment"></iframe>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary">編輯</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
-    <div class="modal fade" id="exampleModalLong2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+    <hr>
+    <div class="media">
+      <a href="#" class="atc" data-toggle="modal" data-target="#exampleModalLong2">
+
+        <div class="media-left">
+          <i class='fas fa-user-circle' style='font-size:24px;'></i>
+          <div class="media-heading">林彥享</div>
+        </div>
+        <div class="media-body">
+          <h3 class="media-title">燙傷處理秘訣</h3>
+          <div class="bottomm"><span><img src="{%static 'content/empathy.png'%}">98</span><span><img src="{%static 'content/question.png'%}">2</span><span><img
+                src="{%static 'content/favorite.png'%}">81</span></div>
+        </div>
+      </a>
+
+      <div class="modal fade" id="exampleModalLong2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">文章標題 <br><sub>|科別</sub></h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div>
-                        內文...
-                        <hr><a href="#" class="badge badge-success">標籤</a><a href="#" class="badge badge-info">標籤</a><a
-                            href="#" class="badge badge-dark">標籤</a>
-                    </div>
-                    <div class="comments">
-                        <div class="media">
-                            <img src="{% static 'head_girl.jpg' %}" class="align-self-start mr-3" style="width:55px">
-                            <div class="media-body">
-                                <h5 style="color: dimgray;">B1<span style="font-size: 15px;color: #aaa;">_匿名 2020xxxx
-                                    </span></h5>
-                                <p>留言內文</p>
-                            </div>
-                        </div>
-                        <div class="media">
-                            <img src="{% static 'head_girl.jpg' %}" class="align-self-start mr-3" style="width:55px">
-                            <div class="media-body">
-                                <h5 style="color: dimgray;">B2<span style="font-size: 15px;color: #aaa;">_匿名 2020xxxx
-                                    </span></h5>
-                                <p>留言內文</p>
-                            </div>
-                        </div>
-                        <iframe src="{%url 'post:add_comment_2' %}" class="comment"></iframe>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">編輯</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
-                </div>
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">文章標題 <br><sub>|科別</sub></h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
             </div>
-        </div>
-    </div>
-    <div class="container">
-
-        <!-- Left-aligned media object -->
-
-        <hr>
-        <div class="media">
-            <a href="#" class="atc" data-toggle="modal" data-target="#exampleModalLong1">
-
-                <div class="media-left">
-                    <i class='fas fa-user-circle' style='font-size:24px;'></i>
+            <div class="modal-body">
+              <div>
+                內文...
+                <hr><a href="#" class="badge badge-success">標籤</a><a href="#" class="badge badge-info">標籤</a><a href="#"
+                  class="badge badge-dark">標籤</a>
+                <hr>
+                <div class="give"><a onclick="myFunction(this)" class="icon empathy" href="#" tabindex="0"
+                    data-toggle="popover" data-trigger="hover" title="" data-placement="top" data-content="給予關懷"><img
+                      src="{%static 'content/empathy.png'%}"></a><span><a onclick="myFunction(this)" class="icon question" href="#"
+                      tabindex="0" data-toggle="popover" data-trigger="hover" title="" data-content="深表懷疑"
+                      data-placement="top"><img src="{%static 'content/question.png'%}"></a></span><span><a onclick="myFunction(this)"
+                      class="icon favorite" href="#" tabindex="0" data-toggle="popover" data-trigger="hover" title=""
+                      data-content="收藏!" data-placement="top"><img src="{%static 'content/favorite.png'%}"></a></span></div>
+                <div class="total">給予關懷:98 &nbsp 回應:81 &nbsp <span>懷疑:2</span></div>
+              </div>
+              <div class="comments">
+                <div class="media">
+                  <img src="{%static 'head_girl.jpg'%}" class="align-self-start mr-3" style="width:55px">
+                  <div class="media-body">
+                    <h5 style="color: dimgray;">B1<span style="font-size: 15px;color: #aaa;">_匿名 2020xxxx
+                      </span></h5>
+                    <p>留言內文</p>
+                  </div>
                 </div>
-                <div class="media-body">
-                    <h4 class="media-heading">匿名</h4>
-                    <h3 class="media-title">燙傷處理秘訣</h3>
-                    <div class="bottom">
-                        {%load static%}
-                        <span><img src="{%static 'content/empathy.png'%}">18</span>
-                        <span><img src="{%static 'content/question.png'%}">10</span>
-                        <span><img src="{%static 'content/favorite.png'%}"></span>
-                    </div>
+                <div class="media">
+                  <img src="{%static 'head_boy.jpg'%}" class="align-self-start mr-3" style="width:55px">
+                  <div class="media-body">
+                    <h5 style="color: dimgray;">B2<span style="font-size: 15px;color: #aaa;">_匿名 2020xxxx
+                      </span></h5>
+                    <p>留言內文</p>
+                  </div>
                 </div>
-            </a>
-
-            <div class="modal fade" id="exampleModalLong1" tabindex="-1" role="dialog"
-                aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLongTitle">燙傷處理秘訣#2 <br><sub>|皮膚科</sub>
-                            </h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <div>
-                                今天來跟大家分享個我是如何處理燙傷後續換藥的，如果想看燙傷當下的故事的可以到#1去看看(￣∇￣)(以下畫面可能引起不適請斟酌點開)
-                                <hr><a href="#" class="badge badge-success">燙傷</a><a href="#"
-                                    class="badge badge-info">後續處理</a><a href="#" class="badge badge-dark">我是全能小畫家</a>
-                            </div>
-                            <div class="comments">
-                                <div class="media">
-                                    <img src="{%static '頭貼範例.png'%}" class="align-self-start mr-3" style="width:55px">
-                                    <div class="media-body">
-                                        <h5 style="color: dimgray;">B1<span style="font-size: 15px;color: #aaa;">_匿名
-                                                20200807
-                                            </span></h5>
-                                        <p>感謝大神!!小弟的傷疤真的越來越淡了(感動</p>
-                                    </div>
-                                </div>
-                                <div class="media">
-                                    <img src="{%static '頭貼範例.png'%}" class="align-self-start mr-3" style="width:55px">
-                                    <div class="media-body">
-                                        <h5 style="color: dimgray;">B2<span style="font-size: 15px;color: #aaa;">_匿名
-                                                20200807
-                                            </span></h5>
-                                        <p>這個標籤是甚麼鬼哈哈XDD</p>
-                                    </div>
-                                </div>
-                                <div class="media">
-                                    <img src="{%static '頭貼範例.png'%}" class="align-self-start mr-3" style="width:55px">
-                                    <div class="media-body">
-                                        <h5 style="color: dimgray;">B3<span style="font-size: 15px;color: #aaa;">_匿名
-                                                20200807
-                                            </span></h5>
-                                        <p>也很推薦oiiyu的藥膏，冰冰涼涼的不黏膩，而且擦了半個月疤痕幾乎就消失了!重點是適合月底的窮學生qq就是我本人</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <iframe src="{%url 'post:add_comment_2'%}" class="comment"></iframe>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-primary">編輯</button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
-                        </div>
-                    </div>
-                </div>
+                <iframe src="{%url 'post:add_comment_2'%}" class="comment"></iframe>
+              </div>
             </div>
-
-        </div>
-    </div>
-
-    <div class="container">
-        <hr>
-        <!-- Left-aligned media object -->
-
-
-        <div class="media">
-            <a href="#" class="atc" data-toggle="modal" data-target="#exampleModalLong1">
-
-                <div class="media-left">
-                    <i class='fas fa-user-circle' style='font-size:24px;'></i>
-                </div>
-                <div class="media-body">
-                    <h4 class="media-heading">匿名</h4>
-                    <h3 class="media-title">燙傷處理秘訣</h3>
-                    <div class="bottom">
-                        {%load static%}
-                        <span><img src="{%static 'content/empathy.png'%}">18</span>
-                        <span><img src="{%static 'content/question.png'%}">10</span>
-                        <span><img src="{%static 'content/favorite.png'%}"></span>
-                    </div>
-                </div>
-            </a>
-
-            <div class="modal fade" id="exampleModalLong1" tabindex="-1" role="dialog"
-                aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLongTitle">燙傷處理秘訣#2 <br><sub>|皮膚科</sub>
-                            </h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <div>
-                                今天來跟大家分享個我是如何處理燙傷後續換藥的，如果想看燙傷當下的故事的可以到#1去看看(￣∇￣)(以下畫面可能引起不適請斟酌點開)
-                                <hr><a href="#" class="badge badge-success">燙傷</a><a href="#"
-                                    class="badge badge-info">後續處理</a><a href="#" class="badge badge-dark">我是全能小畫家</a>
-                            </div>
-                            <div class="comments">
-                                <div class="media">
-                                    <img src="{%static '頭貼範例.png'%}" class="align-self-start mr-3" style="width:55px">
-                                    <div class="media-body">
-                                        <h5 style="color: dimgray;">B1<span style="font-size: 15px;color: #aaa;">_匿名
-                                                20200807
-                                            </span></h5>
-                                        <p>感謝大神!!小弟的傷疤真的越來越淡了(感動</p>
-                                    </div>
-                                </div>
-                                <div class="media">
-                                    <img src="{%static '頭貼範例.png'%}" class="align-self-start mr-3" style="width:55px">
-                                    <div class="media-body">
-                                        <h5 style="color: dimgray;">B2<span style="font-size: 15px;color: #aaa;">_匿名
-                                                20200807
-                                            </span></h5>
-                                        <p>這個標籤是甚麼鬼哈哈XDD</p>
-                                    </div>
-                                </div>
-                                <div class="media">
-                                    <img src="{%static '頭貼範例.png'%}" class="align-self-start mr-3" style="width:55px">
-                                    <div class="media-body">
-                                        <h5 style="color: dimgray;">B3<span style="font-size: 15px;color: #aaa;">_匿名
-                                                20200807
-                                            </span></h5>
-                                        <p>也很推薦oiiyu的藥膏，冰冰涼涼的不黏膩，而且擦了半個月疤痕幾乎就消失了!重點是適合月底的窮學生qq就是我本人</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <iframe src="{%url 'post:add_comment_2'%}" class="comment"></iframe>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-primary">編輯</button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
-                        </div>
-                    </div>
-                </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary">編輯</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
             </div>
-
+          </div>
         </div>
+      </div>
     </div>
+    <hr>
+    <div class="media">
+      <a href="#" class="atc" data-toggle="modal" data-target="#exampleModalLong2">
 
-    <div class="container">
-        <hr>
-        <!-- Left-aligned media object -->
+        <div class="media-left">
+          <i class='fas fa-user-circle' style='font-size:24px;'></i>
+          <div class="media-heading">林彥享</div>
+        </div>
+        <div class="media-body">
+          <h3 class="media-title">燙傷處理秘訣</h3>
+          <div class="bottomm"><span><img src="{%static 'content/empathy.png'%}">30</span><span><img src="{%static 'content/question.png'%}">0</span><span><img
+                src="{%static 'content/favorite.png'%}">15</span></div>
+        </div>
+      </a>
 
-
-        <div class="media">
-            <a href="#" class="atc" data-toggle="modal" data-target="#exampleModalLong1">
-
-                <div class="media-left">
-                    <i class='fas fa-user-circle' style='font-size:24px;'></i>
-                </div>
-                <div class="media-body">
-                    <h4 class="media-heading">匿名</h4>
-                    <h3 class="media-title">燙傷處理秘訣</h3>
-                    <div class="bottom">
-                        {%load static%}
-                        <span><img src="{%static 'content/empathy.png'%}">18</span>
-                        <span><img src="{%static 'content/question.png'%}">10</span>
-                        <span><img src="{%static 'content/favorite.png'%}"></span>
-                    </div>
-                </div>
-            </a>
-
-            <div class="modal fade" id="exampleModalLong1" tabindex="-1" role="dialog"
-                aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLongTitle">燙傷處理秘訣#2 <br><sub>|皮膚科</sub>
-                            </h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <div>
-                                今天來跟大家分享個我是如何處理燙傷後續換藥的，如果想看燙傷當下的故事的可以到#1去看看(￣∇￣)(以下畫面可能引起不適請斟酌點開)
-                                <hr><a href="#" class="badge badge-success">燙傷</a><a href="#"
-                                    class="badge badge-info">後續處理</a><a href="#" class="badge badge-dark">我是全能小畫家</a>
-                            </div>
-                            <div class="comments">
-                                <div class="media">
-                                    <img src="{%static '頭貼範例.png'%}" class="align-self-start mr-3" style="width:55px">
-                                    <div class="media-body">
-                                        <h5 style="color: dimgray;">B1<span style="font-size: 15px;color: #aaa;">_匿名
-                                                20200807
-                                            </span></h5>
-                                        <p>感謝大神!!小弟的傷疤真的越來越淡了(感動</p>
-                                    </div>
-                                </div>
-                                <div class="media">
-                                    <img src="{%static '頭貼範例.png'%}" class="align-self-start mr-3" style="width:55px">
-                                    <div class="media-body">
-                                        <h5 style="color: dimgray;">B2<span style="font-size: 15px;color: #aaa;">_匿名
-                                                20200807
-                                            </span></h5>
-                                        <p>這個標籤是甚麼鬼哈哈XDD</p>
-                                    </div>
-                                </div>
-                                <div class="media">
-                                    <img src="{%static '頭貼範例.png'%}" class="align-self-start mr-3" style="width:55px">
-                                    <div class="media-body">
-                                        <h5 style="color: dimgray;">B3<span style="font-size: 15px;color: #aaa;">_匿名
-                                                20200807
-                                            </span></h5>
-                                        <p>也很推薦oiiyu的藥膏，冰冰涼涼的不黏膩，而且擦了半個月疤痕幾乎就消失了!重點是適合月底的窮學生qq就是我本人</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <iframe src="{%url 'post:add_comment_2' %}" class="comment"></iframe>
-                        </div>
-                        <div class="modal-footer">
-
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
-                        </div>
-                    </div>
-                </div>
+      <div class="modal fade" id="exampleModalLong2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">文章標題 <br><sub>|科別</sub></h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
             </div>
-
+            <div class="modal-body">
+              <div>
+                內文...
+                <hr><a href="#" class="badge badge-success">標籤</a><a href="#" class="badge badge-info">標籤</a><a href="#"
+                  class="badge badge-dark">標籤</a>
+                <hr>
+                <div class="give"><a onclick="myFunction(this)" class="icon empathy" href="#" tabindex="0"
+                    data-toggle="popover" data-trigger="hover" title="" data-placement="top" data-content="給予關懷"><img
+                      src="{%static 'content/empathy.png'%}"></a><span><a onclick="myFunction(this)" class="icon question" href="#"
+                      tabindex="0" data-toggle="popover" data-trigger="hover" title="" data-content="深表懷疑"
+                      data-placement="top"><img src="{%static 'content/question.png'%}"></a></span><span><a onclick="myFunction(this)"
+                      class="icon favorite" href="#" tabindex="0" data-toggle="popover" data-trigger="hover" title=""
+                      data-content="收藏!" data-placement="top"><img src="{%static 'content/favorite.png'%}"></a></span></div>
+                <div class="total">給予關懷:30 &nbsp 回應:12 &nbsp <span>懷疑:0</span></div>
+              </div>
+              <div class="comments">
+                <div class="media">
+                  <img src="{%static 'head_boy.jpg'%}" class="align-self-start mr-3" style="width:55px">
+                  <div class="media-body">
+                    <h5 style="color: dimgray;">B1<span style="font-size: 15px;color: #aaa;">_匿名 2020xxxx
+                      </span></h5>
+                    <p>留言內文</p>
+                  </div>
+                </div>
+                <div class="media">
+                  <img src="{%static 'head_girl.jpg'%}" class="align-self-start mr-3" style="width:55px">
+                  <div class="media-body">
+                    <h5 style="color: dimgray;">B2<span style="font-size: 15px;color: #aaa;">_匿名 2020xxxx
+                      </span></h5>
+                    <p>留言內文</p>
+                  </div>
+                </div>
+                <iframe src="{%url 'post:add_comment_2' %}" class="comment"></iframe>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary">編輯</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
+    <hr>
+    <div class="media">
+      <a href="#" class="atc" data-toggle="modal" data-target="#exampleModalLong2">
+
+        <div class="media-left">
+          <i class='fas fa-user-circle' style='font-size:24px;'></i>
+          <div class="media-heading">林彥享</div>
+        </div>
+        <div class="media-body">
+          <h3 class="media-title">燙傷處理秘訣</h3>
+          <div class="bottomm"><span><img src="{%static 'content/empathy.png'%}">30</span><span><img src="{%static 'content/question.png'%}">0</span><span><img
+                src="{%static 'content/favorite.png'%}">15</span></div>
+        </div>
+      </a>
+
+      <div class="modal fade" id="exampleModalLong2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">文章標題 <br><sub>|科別</sub></h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div>
+                內文...
+                <hr><a href="#" class="badge badge-success">標籤</a><a href="#" class="badge badge-info">標籤</a><a href="#"
+                  class="badge badge-dark">標籤</a>
+                <hr>
+                <div class="give"><a onclick="myFunction(this)" class="icon empathy" href="#" tabindex="0"
+                    data-toggle="popover" data-trigger="hover" title="" data-placement="top" data-content="給予關懷"><img
+                      src="{%static 'content/empathy.png'%}"></a><span><a onclick="myFunction(this)" class="icon question" href="#"
+                      tabindex="0" data-toggle="popover" data-trigger="hover" title="" data-content="深表懷疑"
+                      data-placement="top"><img src="{%static 'content/question.png'%}"></a></span><span><a onclick="myFunction(this)"
+                      class="icon favorite" href="#" tabindex="0" data-toggle="popover" data-trigger="hover" title=""
+                      data-content="收藏!" data-placement="top"><img src="{%static 'content/favorite.png'%}"></a></span></div>
+                <div class="total">給予關懷:30 &nbsp 回應:12 &nbsp <span>懷疑:0</span></div>
+              </div>
+              <div class="comments">
+                <div class="media">
+                  <img src="{%static 'head_boy.jpg'%}" class="align-self-start mr-3" style="width:55px">
+                  <div class="media-body">
+                    <h5 style="color: dimgray;">B1<span style="font-size: 15px;color: #aaa;">_匿名 2020xxxx
+                      </span></h5>
+                    <p>留言內文</p>
+                  </div>
+                </div>
+                <div class="media">
+                  <img src="{%static 'head_girl.jpg'%}" class="align-self-start mr-3" style="width:55px">
+                  <div class="media-body">
+                    <h5 style="color: dimgray;">B2<span style="font-size: 15px;color: #aaa;">_匿名 2020xxxx
+                      </span></h5>
+                    <p>留言內文</p>
+                  </div>
+                </div>
+                <iframe src="{%url 'post:add_comment_2' %}" class="comment"></iframe>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary">編輯</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <div class="media">
+      <a href="#" class="atc" data-toggle="modal" data-target="#exampleModalLong2">
+
+        <div class="media-left">
+          <i class='fas fa-user-circle' style='font-size:24px;'></i>
+          <div class="media-heading">林彥享</div>
+        </div>
+        <div class="media-body">
+          <h3 class="media-title">燙傷處理秘訣</h3>
+          <div class="bottomm"><span><img src="{%static 'content/empathy.png'%}">30</span><span><img src="{%static 'content/question.png'%}">0</span><span><img
+                src="{%static 'content/favorite.png'%}">15</span></div>
+        </div>
+      </a>
+
+      <div class="modal fade" id="exampleModalLong2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">文章標題 <br><sub>|科別</sub></h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div>
+                內文...
+                <hr><a href="#" class="badge badge-success">標籤</a><a href="#" class="badge badge-info">標籤</a><a href="#"
+                  class="badge badge-dark">標籤</a>
+                <hr>
+                <div class="give"><a onclick="myFunction(this)" class="icon empathy" href="#" tabindex="0"
+                    data-toggle="popover" data-trigger="hover" title="" data-placement="top" data-content="給予關懷"><img
+                      src="{%static 'content/empathy.png'%}"></a><span><a onclick="myFunction(this)" class="icon question" href="#"
+                      tabindex="0" data-toggle="popover" data-trigger="hover" title="" data-content="深表懷疑"
+                      data-placement="top"><img src="{%static 'content/question.png'%}"></a></span><span><a onclick="myFunction(this)"
+                      class="icon favorite" href="#" tabindex="0" data-toggle="popover" data-trigger="hover" title=""
+                      data-content="收藏!" data-placement="top"><img src="{%static 'content/favorite.png'%}"></a></span></div>
+                <div class="total">給予關懷:30 &nbsp 回應:12 &nbsp <span>懷疑:0</span></div>
+              </div>
+              <div class="comments">
+                <div class="media">
+                  <img src="{%static 'head_boy.jpg'%}" class="align-self-start mr-3" style="width:55px">
+                  <div class="media-body">
+                    <h5 style="color: dimgray;">B1<span style="font-size: 15px;color: #aaa;">_匿名 2020xxxx
+                      </span></h5>
+                    <p>留言內文</p>
+                  </div>
+                </div>
+                <div class="media">
+                  <img src="{%static 'head_girl.jpg'%}" class="align-self-start mr-3" style="width:55px">
+                  <div class="media-body">
+                    <h5 style="color: dimgray;">B2<span style="font-size: 15px;color: #aaa;">_匿名 2020xxxx
+                      </span></h5>
+                    <p>留言內文</p>
+                  </div>
+                </div>
+                <iframe src="{%url 'post:add_comment_2' %}" class="comment"></iframe>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary">編輯</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <div class="media">
+      <a href="#" class="atc" data-toggle="modal" data-target="#exampleModalLong2">
+
+        <div class="media-left">
+          <i class='fas fa-user-circle' style='font-size:24px;'></i>
+          <div class="media-heading">林彥享</div>
+        </div>
+        <div class="media-body">
+          <h3 class="media-title">燙傷處理秘訣</h3>
+          <div class="bottomm"><span><img src="{%static 'content/empathy.png'%}">30</span><span><img src="{%static 'content/question.png'%}">0</span><span><img
+                src="{%static 'content/favorite.png'%}">15</span></div>
+        </div>
+      </a>
+
+      <div class="modal fade" id="exampleModalLong2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">文章標題 <br><sub>|科別</sub></h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div>
+                內文...
+                <hr><a href="#" class="badge badge-success">標籤</a><a href="#" class="badge badge-info">標籤</a><a href="#"
+                  class="badge badge-dark">標籤</a>
+                <hr>
+                <div class="give"><a onclick="myFunction(this)" class="icon empathy" href="#" tabindex="0"
+                    data-toggle="popover" data-trigger="hover" title="" data-placement="top" data-content="給予關懷"><img
+                      src="{%static 'content/empathy.png'%}"></a><span><a onclick="myFunction(this)" class="icon question" href="#"
+                      tabindex="0" data-toggle="popover" data-trigger="hover" title="" data-content="深表懷疑"
+                      data-placement="top"><img src="{%static 'content/question.png'%}"></a></span><span><a onclick="myFunction(this)"
+                      class="icon favorite" href="#" tabindex="0" data-toggle="popover" data-trigger="hover" title=""
+                      data-content="收藏!" data-placement="top"><img src="{%static 'content/favorite.png'%}"></a></span></div>
+                <div class="total">給予關懷:30 &nbsp 回應:12 &nbsp <span>懷疑:0</span></div>
+              </div>
+              <div class="comments">
+                <div class="media">
+                  <img src="{%static 'head_boy.jpg'%}" class="align-self-start mr-3" style="width:55px">
+                  <div class="media-body">
+                    <h5 style="color: dimgray;">B1<span style="font-size: 15px;color: #aaa;">_匿名 2020xxxx
+                      </span></h5>
+                    <p>留言內文</p>
+                  </div>
+                </div>
+                <div class="media">
+                  <img src="{%static 'head_girl.jpg'%}" class="align-self-start mr-3" style="width:55px">
+                  <div class="media-body">
+                    <h5 style="color: dimgray;">B2<span style="font-size: 15px;color: #aaa;">_匿名 2020xxxx
+                      </span></h5>
+                    <p>留言內文</p>
+                  </div>
+                </div>
+                <iframe src="{%url 'post:add_comment_2' %}" class="comment"></iframe>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary">編輯</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <div class="media">
+      <a href="#" class="atc" data-toggle="modal" data-target="#exampleModalLong2">
+
+        <div class="media-left">
+          <i class='fas fa-user-circle' style='font-size:24px;'></i>
+          <div class="media-heading">林彥享</div>
+        </div>
+        <div class="media-body">
+          <h3 class="media-title">燙傷處理秘訣</h3>
+          <div class="bottomm"><span><img src="{%static 'content/empathy.png'%}">30</span><span><img src="{%static 'content/question.png'%}">0</span><span><img
+                src="{%static 'content/favorite.png'%}">15</span></div>
+        </div>
+      </a>
+
+      <div class="modal fade" id="exampleModalLong2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">文章標題 <br><sub>|科別</sub></h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div>
+                內文...
+                <hr><a href="#" class="badge badge-success">標籤</a><a href="#" class="badge badge-info">標籤</a><a href="#"
+                  class="badge badge-dark">標籤</a>
+                <hr>
+                <div class="give"><a onclick="myFunction(this)" class="icon empathy" href="#" tabindex="0"
+                    data-toggle="popover" data-trigger="hover" title="" data-placement="top" data-content="給予關懷"><img
+                      src="{%static 'content/empathy.png'%}"></a><span><a onclick="myFunction(this)" class="icon question" href="#"
+                      tabindex="0" data-toggle="popover" data-trigger="hover" title="" data-content="深表懷疑"
+                      data-placement="top"><img src="{%static 'content/question.png'%}"></a></span><span><a onclick="myFunction(this)"
+                      class="icon favorite" href="#" tabindex="0" data-toggle="popover" data-trigger="hover" title=""
+                      data-content="收藏!" data-placement="top"><img src="{%static 'content/favorite.png'%}"></a></span></div>
+                <div class="total">給予關懷:30 &nbsp 回應:12 &nbsp <span>懷疑:0</span></div>
+              </div>
+              <div class="comments">
+                <div class="media">
+                  <img src="{%static 'head_boy.jpg'%}" class="align-self-start mr-3" style="width:55px">
+                  <div class="media-body">
+                    <h5 style="color: dimgray;">B1<span style="font-size: 15px;color: #aaa;">_匿名 2020xxxx
+                      </span></h5>
+                    <p>留言內文</p>
+                  </div>
+                </div>
+                <div class="media">
+                  <img src="{%static 'head_girl.jpg'%}" class="align-self-start mr-3" style="width:55px">
+                  <div class="media-body">
+                    <h5 style="color: dimgray;">B2<span style="font-size: 15px;color: #aaa;">_匿名 2020xxxx
+                      </span></h5>
+                    <p>留言內文</p>
+                  </div>
+                </div>
+                <iframe src="{%url 'post:add_comment_2' %}" class="comment"></iframe>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary">編輯</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr>
+    
+
+
+    <!--toast1-->
+    <div class="toast ya" id="Toast1" style="position: absolute; top: 5%; right: 5%;z-index: 1055;" data-delay="1500">
+      <div class="toast-header">
+        <h5 class="mr-auto">&nbsp 給予關懷</h5>
+      </div>
+      <div class="toast-body">
+        <img src="="{%static 'content/給予同理心2.png'%}" alt="給予關懷">
+      </div>
+    </div>
+    <!--toast11-->
+    <div class="toast non" id="Toast11" style="position: absolute; top: 5%; right: 5%;z-index: 1055;" data-delay="1500">
+      <div class="toast-header">
+        <h5 class="mr-auto">&nbsp取消關懷</h5>
+      </div>
+      <div class="toast-body">
+        <img src="{%static 'content/empathy.png'%}" alt="給予關懷">
+      </div>
+    </div>
+
+
+    <!--toast2-->
+    <div class="toast ya" id="Toast2" style="position: absolute; top: 5%; right: 5%;z-index: 1055;" data-delay="1500">
+      <div class="toast-header">
+        <h5 class="mr-auto">&nbsp 表示懷疑</h5>
+      </div>
+      <div class="toast-body">
+        <img src="="{%static 'content/表示懷疑2.png'%}" alt="懷疑">
+      </div>
+    </div>
+    <!--toast22-->
+    <div class="toast non" id="Toast22" style="position: absolute; top: 5%; right: 5%;z-index: 1055;" data-delay="1500">
+      <div class="toast-header">
+        <h5 class="mr-auto">&nbsp 收回懷疑</h5>
+      </div>
+      <div class="toast-body">
+        <img src="{%static 'content/question.png'%}" alt="懷疑">
+      </div>
+    </div>
+
+
+    <!--toast3-->
+    <div class="toast ya" id="Toast3" style="position: absolute; top: 5%; right: 5%;z-index: 1055;" data-delay="1500">
+      <div class="toast-header">
+        <h5 class="mr-auto">&nbsp &nbsp 收藏!!</h5>
+      </div>
+      <div class="toast-body">
+        <img src="static/content/收藏2.png" alt="收藏">
+      </div>
+    </div>
+    <!--toast33-->
+    <div class="toast non" id="Toast33" style="position: absolute; top: 5%; right: 5%;z-index: 1055;" data-delay="1500">
+      <div class="toast-header">
+        <h5 class="mr-auto">&nbsp 取消收藏!</h5>
+      </div>
+      <div class="toast-body">
+        <img src="static/content/favorite.png" alt="收藏">
+      </div>
+    </div>
+
+
+  </div>
 
 
 </body>
