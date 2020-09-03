@@ -102,80 +102,80 @@
 </head>
 
 <body>
-    <form action="{%url 'post:add_comment_2'}" method="POST"}>
-    {%csrf_token%}
+    <form action = "{%url 'post:add_comment_2' %}" method="POST">
+    {% csrf_token %}
         <div class="container">
             <ul id="myUL" class="tags"></ul>
             <div id="myDIV" class="header">
-                <input type="text" id="myInput" name='comment' placeholder="請輸入留言">
-                <span onclick="newElement()" class="addBtn">發佈</span>
+                <input type="text" id="myInput" name='comment_content' placeholder="請輸入留言">
+                <span onclick="newElement()" class="addBtn" type='submit'>發佈</span>
             </div>
         </div>
+    </form>
+    <script>
 
-        <script>
+        // Create a new list item when clicking on the "Add" button
+        function newElement() {
+            var div = document.createElement("div");
+            var div2 = document.createElement("div");
+            var span = document.createElement("SPAN");
+            var img = document.createElement('img');
+            var headd = document.createElement('h5')
+            var para = document.createElement('p')
+            var textt = document.createTextNode('_匿名 2020xxxx')
+            var b = document.createTextNode('Bx')
 
-            // Create a new list item when clicking on the "Add" button
-            function newElement() {
-                var div = document.createElement("div");
-                var div2 = document.createElement("div");
-                var span = document.createElement("SPAN");
-                var img = document.createElement('img');
-                var headd = document.createElement('h5')
-                var para = document.createElement('p')
-                var textt = document.createTextNode('_匿名 2020xxxx')
-                var b = document.createTextNode('Bx')
+            div.class = "media";
+            div2.class = "media-body"
+            var inputValue = document.getElementById("myInput").value;
+            // var para = document.createElement("P");
+            var t = document.createTextNode(inputValue);
 
-                div.class = "media";
-                div2.class = "media-body"
-                var inputValue = document.getElementById("myInput").value;
-                // var para = document.createElement("P");
-                var t = document.createTextNode(inputValue);
-
-                if (inputValue === '') {
-                    alert("不能發佈空留言喔!");
-                } else {
-                    document.getElementById("myUL").appendChild(div);
-                }
-                document.getElementById("myInput").value = "";
-
-
-                div.style.display = 'flex';
-                img.style.height = '73.3px';
-                img.style.width = '55px';
-                img.style.alignSelf = 'start';
-                img.src = "{% static headpicture %}";
-                div.style.marginBottom = "25px";
-                headd.style.fontSize = '18px';
-                headd.style.color = 'dimgray';
-                span.style.fontSize = '15px';
-                span.style.color = '#aaa';
-                // spantext.setAttribute("position", "absolute");
-                // spantext.setAttribute(" display", "inline-block")
-                // spantext.setAttribute("top", "-100px");
+            if (inputValue === '') {
+                alert("不能發佈空留言喔!");
+            } else {                    
+                document.getElementById("myUL").appendChild(div);
+            }
+            document.getElementById("myInput").value = "";
 
 
-                div.appendChild(img);
-                div.appendChild(div2);
+            div.style.display = 'flex';
+            img.style.height = '73.3px';
+            img.style.width = '55px';
+            img.style.alignSelf = 'start';
+            img.src = "{% static headpicture %}";
+            div.style.marginBottom = "25px";
+            headd.style.fontSize = '18px';
+            headd.style.color = 'dimgray';
+            span.style.fontSize = '15px';
+            span.style.color = '#aaa';
+            // spantext.setAttribute("position", "absolute");
+            // spantext.setAttribute(" display", "inline-block")
+            // spantext.setAttribute("top", "-100px");
 
-                div2.appendChild(headd);
-                div2.appendChild(para);
 
-                headd.appendChild(b);
-                headd.appendChild(span);
-                para.appendChild(t);
+            div.appendChild(img);
+            div.appendChild(div2);
 
-                span.appendChild(textt);
-                // para.appendChild(t);
+            div2.appendChild(headd);
+            div2.appendChild(para);
 
-                for (i = 0; i < close.length; i++) {
-                    close[i].onclick = function () {
-                        var div = this.parentElement;
-                        div.style.display = "none";
-                    }
+            headd.appendChild(b);
+            headd.appendChild(span);
+            para.appendChild(t);
+
+            span.appendChild(textt);
+            // para.appendChild(t);
+
+            for (i = 0; i < close.length; i++) {
+                close[i].onclick = function () {
+                    var div = this.parentElement;
+                    div.style.display = "none";
                 }
             }
-        </script>
-    </form>
+        }
+    </script>
+    
 </body>
 
 </html>

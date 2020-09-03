@@ -118,7 +118,7 @@
 </head>
 
 <body>
-    <form action="{% url 'post:create'%}" method="POST" enctype = "multipart/form-data">
+    <form action="" method="POST" enctype = "multipart/form-data">
     {% csrf_token %}
         <div class="chooseBoard">
             <div class="btn-group dropright">
@@ -190,6 +190,7 @@
 
             $(".dropdown-menu").on('click', 'a', function () {
                 $(".btnchooseboard:first-child").text($(this).text());
+                $(".btnchooseboard:first-child").val($(this).text());
             });
 
         });
