@@ -3,6 +3,7 @@
 
 <head>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600;700&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>留言</title>
     {%load static%}
@@ -113,48 +114,32 @@
             </div>   
         </div>
     </form>
-    <script>
-        function Redirect() {
-        //發文按鈕按下去後導回「我的文章」頁面
-            window.top.location.replace("http://127.0.0.1:8000/user/myarticles/");
-        
-    }      
-    </script>
+    
     <script>
         // Create a new list item when clicking on the "Add" button
         function newElement() {
             //傳資料
-            var comment = document.getElementById("myInput").val();
-             $.ajax({ 
-                    type: 'POST', 
-                    url: '{%url 'post:test'%}', 
-                    data: { 
- 
-                        csrfmiddlewaretoken: $('[name="csrfmiddlewaretoken"]').val(),    // 添加这句，去获取 input 的值 
-                        "comment_content": $("#myInput").val(), 
- 
-                    } 
             var div = document.createElement("div");
             var div2 = document.createElement("div");
             var span = document.createElement("SPAN");
             var img = document.createElement('img');
-            var headd = document.createElement('h5')
-            var para = document.createElement('p')
-            var textt = document.createTextNode('_匿名 2020xxxx')
-            var b = document.createTextNode('Bx')
+            var headd = document.createElement('h5');
+            var para = document.createElement('p');
+            var textt = document.createTextNode('_匿名 2020xxxx');
+            var b = document.createTextNode('Bx');
 
             div.class = "media";
-            div2.class = "media-body"
+            div2.class = "media-body";
             var inputValue = document.getElementById("myInput").value;
             // var para = document.createElement("P");
             var t = document.createTextNode(inputValue);
 
             if (inputValue === '') {
                 alert("不能發佈空留言喔!");
-            } else {                    
+            } else {                  
                 document.getElementById("myUL").appendChild(div);
             }
-            document.getElementById("myInput").value = "";
+            document.getElementById("myInput").value;
 
 
             div.style.display = 'flex';
@@ -191,7 +176,22 @@
                     div.style.display = "none";
                 }
             }
+        
+        if (inputValue !==''){
+        $.ajax({ 
+                type: 'POST', 
+                url: '{%url 'post:test'%}', 
+                data: { 
+
+                    csrfmiddlewaretoken: $('[name="csrfmiddlewaretoken"]').val(),    // 添加这句，去获取 input 的值 
+                    "comment_content": $("#myInput").val(), 
+
+                },
+
+                async:false,
+            });
         }
+    }    
     </script>
     
 </body>
