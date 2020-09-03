@@ -11,7 +11,7 @@
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
     <title>login</title>
-    
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300&display=swap');
 
@@ -30,7 +30,7 @@
             margin: 15px 5px;
             border: none;
             cursor: pointer;
-            width: 100%;
+            width: 500px;
 
 
         }
@@ -56,12 +56,15 @@
         }
 
         div.logo {
-            padding: 50px 310px;
+            padding: 50px 300px;
 
         }
 
         div.words {
-            padding: 250px 300px;
+
+            width: 100%;
+            margin-top: 250px;
+            text-align: center;
 
         }
 
@@ -74,11 +77,14 @@
 
         .words {
             color: white;
+            font-size: 20px;
 
         }
 
         .box {
-            vertical-align: middle;
+            padding: 15px;
+            display: flex;
+            justify-content: center;
         }
 
         .picture {
@@ -86,7 +92,7 @@
             height: 556.6px;
             position: absolute;
             bottom: 0px;
-            left: 0px;
+            left: -10px;
         }
 
         .left {
@@ -101,6 +107,7 @@
 
         }
 
+
         div.avatar {
 
             text-align: center;
@@ -112,6 +119,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+
         }
 
         .form img {
@@ -120,7 +128,7 @@
         }
 
         label.bottom {
-            width: 100%;
+            width: 512px;
             color: black;
             display: inline-flex;
             justify-content: space-between;
@@ -136,10 +144,22 @@
             background-color: #fafaf3;
             padding: 5px;
             margin: 5px;
+            width: 500px;
+        }
+
+        a.bottom {
+            text-align: right;
+            padding-right: 0px;
+        }
+
+        a.bottom::after {
+            content: "|";
+            padding-left: 20px;
         }
 
         a.enter {
-            text-align: right;
+            text-align: left;
+            padding-left: 20px;
         }
     </style>
 </head>
@@ -147,12 +167,12 @@
 <body>
     <div class="left">
         <div class="logo">
-            {%load static%} 
+            {%load static%}
             <img src="{% static 'login/wahoa.png' %}" alt="logo" class="logo">
         </div>
         <div class="words">
-            <h5>致力於成為能夠整合醫療資訊的平台</h5>
-            <h5>並且讓大家想到醫療想到—挖厚阿。</h5>
+            <p>致力於成為能夠整合醫療資訊的平台</p>
+            <p>並且讓大家想到醫療想到—挖厚阿。</p>
         </div>
     </div>
 
@@ -178,7 +198,7 @@
                     <label for="psw"><b>密碼</b></label>
                     <input type="password" placeholder="******" name="password" required>
 
-                    <button type="submit" >登入</button>
+                    <button type="submit">登入</button>
                     <label class="bottom">
                         <a class="bottom" href="{%url 'reg:beforelogin'%}">回首頁</a>
                         <a class='enter' href="{%url 'register' %}">註冊</a>
