@@ -102,20 +102,38 @@
 </head>
 
 <body>
-    <form action = "{%url 'post:add_comment_2' %}" method="POST">
+    <form action = "{%url 'post:test'%}" method="POST">
     {% csrf_token %}
         <div class="container">
             <ul id="myUL" class="tags"></ul>
             <div id="myDIV" class="header">
-                <input type="text" id="myInput" name='comment_content' placeholder="請輸入留言">
-                <span onclick="newElement()" class="addBtn" type='submit'>發佈</span>
-            </div>
+                <input type="text" id="myInput"  name= "comment_content" placeholder="請輸入留言">
+                <!--<input onclick="newElement()" class="addBtn" type='submit'>發佈</span>-->
+                <input onclick="newElement()" type="submit" class="addBtn" value="回覆">
+            </div>   
         </div>
     </form>
     <script>
-
+        function Redirect() {
+        //發文按鈕按下去後導回「我的文章」頁面
+            window.top.location.replace("http://127.0.0.1:8000/user/myarticles/");
+        
+    }      
+    </script>
+    <script>
         // Create a new list item when clicking on the "Add" button
         function newElement() {
+            //傳資料
+            var comment = document.getElementById("myInput").val();
+             $.ajax({ 
+                    type: 'POST', 
+                    url: '{%url 'post:test'%}', 
+                    data: { 
+ 
+                        csrfmiddlewaretoken: $('[name="csrfmiddlewaretoken"]').val(),    // 添加这句，去获取 input 的值 
+                        "comment_content": $("#myInput").val(), 
+ 
+                    } 
             var div = document.createElement("div");
             var div2 = document.createElement("div");
             var span = document.createElement("SPAN");

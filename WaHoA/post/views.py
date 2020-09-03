@@ -6,7 +6,7 @@ from django.http import HttpResponse
 # Create your views here.
 #進入myartickl.html
 
-
+@xframe_options_sameorigin
 def home(request):   #已登入的首頁
     gender =request.user.gender
     if gender=='男male':
@@ -55,18 +55,24 @@ def create_post(request):
 
 @xframe_options_sameorigin
 def add_comment_2(request):
-    print(request.method)
-    if request.method == 'POST': 
-        commment_content = request.POST['comment_content']
-        pub_date = timezone.now()
-        Newcomment = Comment.objects.create( comment_content = comment_content, comment_datetime=pub_date)
-        Newcomment.save()
-    else:
-        print('fail')
     gender =request.user.gender
     if gender=='男male':
         return render(request,'user/myarticle/add_comment_2.html',{"headpicture":"/head_boy.jpg"})
     else:
         return render(request,'user/myarticle/add_comment_2.html',{"headpicture":"/head_girl.jpg"})
         #用url叫會被擋，改用static
+    
 
+@xframe_options_sameorigin
+def test(request):
+    print(request.POST)
+    if request.method =='POST':
+        print("YES")
+        comment = request.POST['comment_content']
+        pub_date = timezone.now()
+        Newcomment = Comment.objects.create(comment_content = comment, comment_datetime=pub_date)
+        Newcomment.save()
+        print("Success")
+    else:
+        print("fail")
+    return  render(request,'user/myarticle/add_comment_2.html')

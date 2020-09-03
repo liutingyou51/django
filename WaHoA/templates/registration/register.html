@@ -307,7 +307,7 @@
                 這時我們就要將 valid 設成  false 
             */ 
             if (currentTab == 1) { 
-                $.ajax({ 
+            $.ajax({ 
                     type: 'POST', 
                     url: '{%url 'reg:register_validate'%}', 
                     data: { 
@@ -326,8 +326,7 @@
                     }, 
                     async: false 
  
-                }); 
- 
+                });
             } 
             if(valid==false) 
                 return false; 
